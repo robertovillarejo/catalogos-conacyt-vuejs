@@ -1,3 +1,3 @@
-import MenuComponent from './component/index.vue';
+import CatalogosComponent from './component/index.vue';
 
-export default MenuComponent;
+export default CatalogosComponent;

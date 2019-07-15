@@ -1,4 +1,4 @@
-<template src="./menu.html"></template>
-<script src="./menu.js"></script>
-<style src="./menu.css" scoped lang="css"></style>
+<template src="./catalogos.html"></template>
+<script src="./catalogos.js"></script>
+<style src="./catalogos.css" scoped lang="css"></style>
 

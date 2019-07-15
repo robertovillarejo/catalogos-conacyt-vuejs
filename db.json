@@ -1,0 +1,26 @@
+{
+    "estatusSni": [
+        {
+            "idEstatusSni": 1,
+            "cveEstatusSni": "ESTATUS1",
+            "descEstatusSni": "ACTIVO"
+        },
+        {
+            "idEstatusSni": 1,
+            "cveEstatusSni": "ESTATUS1",
+            "descEstatusSni": "ACTIVO"
+        }
+    ],
+    "tipoInstitucion": [
+        {
+            "idTipoInstitucion": 1,
+            "cveTipoInstitucion": "01",
+            "descTipoInstitucion": "Nacional"
+        },
+        {
+            "idTipoInstitucion": 2,
+            "cveTipoInstitucion": "02",
+            "descTipoInstitucion": "Extranjera"
+        }
+    ]
+}

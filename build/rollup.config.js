@@ -10,7 +10,7 @@ export default {
     output: {
         file: isMinify ? 'dist/js/catalogos.min.js' : 'dist/js/catalogos.js',
         format: 'umd',
-        name: 'CatalogosComponent',
+        name: 'CatalogoComponent',
     },
     plugins: [
         commonjs(),

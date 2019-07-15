@@ -1741,10 +1741,6 @@
 	        "tipoInstitucion": {
 	          valueProp: "idTipoInstitucion",
 	          textProp: "descTipoInstitucion"
-	        },
-	        "users": {
-	          valueProp: "id",
-	          textProp: "name"
 	        }
 	      }
 	    };

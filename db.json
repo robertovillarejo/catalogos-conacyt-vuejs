@@ -6,9 +6,9 @@
             "descEstatusSni": "ACTIVO"
         },
         {
-            "idEstatusSni": 1,
-            "cveEstatusSni": "ESTATUS1",
-            "descEstatusSni": "ACTIVO"
+            "idEstatusSni": 2,
+            "cveEstatusSni": "ESTATUS2",
+            "descEstatusSni": "INACTIVO"
         }
     ],
     "tipoInstitucion": [

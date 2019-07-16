@@ -1,0 +1,10 @@
+{
+    "estatusSni": {
+        "valueProp": "idEstatusSni",
+        "textProp": "descEstatusSni"
+    },
+    "tipoInstitucion": {
+        "valueProp": "idTipoInstitucion",
+        "textProp": "descTipoInstitucion"
+    }
+}

@@ -2,6 +2,7 @@ import vue from 'rollup-plugin-vue';
 import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import commonjs from 'rollup-plugin-commonjs';
+import json from 'rollup-plugin-json';
 
 const isMinify = process.env.BUILD_MODE === 'minify';
 
@@ -20,6 +21,9 @@ export default {
         babel({
             runtimeHelpers: true,
             externalHelpers: false,
+        }),
+        json({
+            compact: true
         }),
         (isMinify && terser())
     ],

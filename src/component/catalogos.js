@@ -1,4 +1,5 @@
 import axios from '../../node_modules/axios/dist/axios';
+import * as catalogues from './catalogues-schema.json';
 
 export default {
   name: 'catalogo',
@@ -22,7 +23,10 @@ export default {
     },
     name: {
       type: String,
-      required: true
+      required: true,
+      validator: function (value) {
+        return catalogues[value] !== undefined;
+      }
     },
     lang: {
       type: String,
@@ -38,16 +42,7 @@ export default {
       schema: undefined,
       selected: null,
       selectName: null,
-      catalogues: {
-        "estatusSni": {
-          valueProp: "idEstatusSni",
-          textProp: "descEstatusSni"
-        },
-        "tipoInstitucion": {
-          valueProp: "idTipoInstitucion",
-          textProp: "descTipoInstitucion"
-        }
-      }
+      catalogues: catalogues
     }
   },
   computed: {

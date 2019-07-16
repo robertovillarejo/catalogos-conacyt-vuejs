@@ -1695,6 +1695,14 @@
 	  });
 	});
 
+	var estatusSni={valueProp:"idEstatusSni",textProp:"descEstatusSni"};var tipoInstitucion={valueProp:"idTipoInstitucion",textProp:"descTipoInstitucion"};var cataloguesSchema = {estatusSni:estatusSni,tipoInstitucion:tipoInstitucion};
+
+	var catalogues = /*#__PURE__*/Object.freeze({
+		estatusSni: estatusSni,
+		tipoInstitucion: tipoInstitucion,
+		'default': cataloguesSchema
+	});
+
 	var script = {
 	  name: 'catalogo',
 	  components: {},
@@ -1716,7 +1724,10 @@
 	    },
 	    name: {
 	      type: String,
-	      required: true
+	      required: true,
+	      validator: function (value) {
+	        return catalogues[value] !== undefined;
+	      }
 	    },
 	    lang: {
 	      type: String,
@@ -1733,16 +1744,7 @@
 	      schema: undefined,
 	      selected: null,
 	      selectName: null,
-	      catalogues: {
-	        "estatusSni": {
-	          valueProp: "idEstatusSni",
-	          textProp: "descEstatusSni"
-	        },
-	        "tipoInstitucion": {
-	          valueProp: "idTipoInstitucion",
-	          textProp: "descTipoInstitucion"
-	        }
-	      }
+	      catalogues: catalogues
 	    };
 	  },
 
@@ -1856,13 +1858,13 @@
 	const __vue_script__ = script;
 
 	/* template */
-	var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{staticClass:"catalogo"},[_c('label',{attrs:{"for":_vm.selectId}},[_vm._v(_vm._s(_vm.label))]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.selected),expression:"selected"}],attrs:{"name":_vm.selectId,"id":_vm.selectId,"required":_vm.required},on:{"input":function($event){return _vm.$emit('input', _vm.options[$event.target.selectedIndex])},"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.selected=$event.target.multiple ? $$selectedVal : $$selectedVal[0];}}},_vm._l((_vm.options),function(option,optionIndex){return _c('option',{key:optionIndex,domProps:{"value":option[_vm.schema.valueProp]}},[_vm._v("\n      "+_vm._s(option[_vm.schema.textProp])+"\n    ")])}),0)])};
+	var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{staticClass:"catalogo"},[_c('label',{attrs:{"for":_vm.selectId}},[_vm._v(_vm._s(_vm.label))]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.selected),expression:"selected"}],attrs:{"name":_vm.selectId,"id":_vm.selectId,"required":_vm.required},on:{"input":function($event){return _vm.$emit('input', _vm.options[$event.target.selectedIndex])},"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.selected=$event.target.multiple ? $$selectedVal : $$selectedVal[0];}}},_vm._l((_vm.options),function(option,optionIndex){return _c('option',{key:optionIndex,domProps:{"value":option[_vm.schema.valueProp]}},[_vm._v(_vm._s(option[_vm.schema.textProp]))])}),0)])};
 	var __vue_staticRenderFns__ = [];
 
 	  /* style */
 	  const __vue_inject_styles__ = undefined;
 	  /* scoped */
-	  const __vue_scope_id__ = "data-v-60804c79";
+	  const __vue_scope_id__ = "data-v-113284bb";
 	  /* module identifier */
 	  const __vue_module_identifier__ = undefined;
 	  /* functional template */

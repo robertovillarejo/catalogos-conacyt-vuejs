@@ -1,9 +1,9 @@
 <template>
   <section class="catalogo">
-    <label v-bind:for="selectId">{{ label }}</label>
+    <label v-bind:for="selectName">{{ label }}</label>
     <select
-      v-bind:name="selectId"
-      v-bind:id="selectId"
+      v-bind:name="selectName"
+      v-bind:id="selectName"
       v-model="selected"
       :required="required"
       @input="$emit('input', options[$event.target.selectedIndex])"
@@ -12,10 +12,10 @@
         v-for="(option, optionIndex) in options"
         v-bind:key="optionIndex"
         v-bind:value="option[schema.valueProp]"
-      >{{ option[schema.textProp] }}</option>
+        >{{ option[schema.textProp] }}</option
+      >
     </select>
   </section>
 </template>
-<script src="./catalogos.js"></script>
-<style src="./catalogos.css" scoped lang="css"></style>
 
+<script lang="ts" src="./Catalogo.component.ts"></script>

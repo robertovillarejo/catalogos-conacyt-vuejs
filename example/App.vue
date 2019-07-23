@@ -1,16 +1,20 @@
 <template>
   <div id="app">
-    <catalogo
-      :host="
-        'https://my-json-server.typicode.com/robertovillarejo/catalogos-conacyt-vuejs/'
-      "
-      :context="''"
-      :label="'Estados'"
-      :name="'tipoInstitucion'"
-      :lang="lang"
-      :required="true"
-      v-model="myModel"
-    ></catalogo>
+    <h2>Example</h2>
+    <form action @submit="processRequest">
+      <catalogo
+        :host="
+          'https://my-json-server.typicode.com/robertovillarejo/catalogos-conacyt-vuejs/'
+        "
+        :context="''"
+        :name="'tipoInstitucion'"
+        :lang="lang"
+        :required="true"
+        v-model="myModel"
+      ></catalogo>
+      <p></p>
+      <button type="submit">Send</button>
+    </form>
   </div>
 </template>
 
@@ -25,6 +29,11 @@ export default Vue.extend({
       lang: "es",
       myModel: null
     };
+  },
+  methods: {
+    processRequest: function() {
+      alert(JSON.stringify(this.myModel));
+    }
   }
 });
 </script>

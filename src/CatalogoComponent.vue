@@ -18,4 +18,4 @@
   </section>
 </template>
 
-<script lang="ts" src="./Catalogo.component.ts"></script>
+<script lang="ts" src="./catalogo.component.ts"></script>

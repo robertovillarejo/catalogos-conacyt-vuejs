@@ -14,7 +14,6 @@ To install with yarn use `yarn add @conacyt/catalogos`
         :host="
           'https://my-json-server.typicode.com/robertovillarejo/catalogos-conacyt-vuejs/'
         "
-        :context="''"
         :name="'tipoInstitucion'"
         :lang="lang"
         :required="true"

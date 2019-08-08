@@ -31,35 +31,17 @@ function (_super) {
     var _this = _super !== null && _super.apply(this, arguments) || this;
 
     _this.options = [];
-    _this.schema = {};
     _this.selected = {};
-    _this.selectName = "";
-    _this.url = "";
-    _this.lang = "es";
     return _this;
   }
 
   CatalogoComponent.prototype.created = function () {
     // Selecting schema
-    if (this.name) {
-      this.schema = catalogues[this.name];
-    } // Build select name
-
+    this.schema = catalogues[this.name]; // Build select name
 
     this.selectName = "catalogo-select-" + this.name; // Build url
 
-    if (this.host) {
-      this.url = this.url + this.host;
-    }
-
-    if (this.context) {
-      this.url = this.url + this.context;
-    }
-
-    this.url = this.url + this.name + "?idioma=" + this.lang + this.parameters;
-  };
-
-  CatalogoComponent.prototype.mounted = function () {
+    this.url = this.host + this.context + this.name + "?idioma=" + this.lang + this.parameters;
     this.loadOptions();
   };
 
@@ -73,12 +55,13 @@ function (_super) {
 
   tslib_1.__decorate([vuePropertyDecorator.Prop({
     type: String,
-    required: true
+    required: true,
+    default: ""
   })], CatalogoComponent.prototype, "host", void 0);
 
   tslib_1.__decorate([vuePropertyDecorator.Prop({
     type: String,
-    default: "/api"
+    default: ""
   })], CatalogoComponent.prototype, "context", void 0);
 
   tslib_1.__decorate([vuePropertyDecorator.Prop({
@@ -92,20 +75,21 @@ function (_super) {
     type: String,
     required: true,
     validator: function validator(value) {
-      return Object.keys(catalogues).indexOf(value) !== -1;
+      return catalogues[value] !== undefined;
     }
   })], CatalogoComponent.prototype, "name", void 0);
 
-  tslib_1.__decorate([vuePropertyDecorator.Prop(String)], CatalogoComponent.prototype, "lang", void 0);
+  tslib_1.__decorate([vuePropertyDecorator.Prop({
+    type: String,
+    default: "es"
+  })], CatalogoComponent.prototype, "lang", void 0);
 
   tslib_1.__decorate([vuePropertyDecorator.Prop({
     type: Boolean,
-    default: false
+    default: true
   })], CatalogoComponent.prototype, "required", void 0);
 
-  CatalogoComponent = tslib_1.__decorate([Component({
-    name: "catalogo"
-  })], CatalogoComponent);
+  CatalogoComponent = tslib_1.__decorate([Component], CatalogoComponent);
   return CatalogoComponent;
 }(vuePropertyDecorator.Vue);
 

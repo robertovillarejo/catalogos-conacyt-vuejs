@@ -1,6 +1,6 @@
 {
   "name": "@conacyt/catalogos",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Un componente de VueJs para mostrar los distintos catálogos comunes de CONACYT",
   "keywords": [
     "vue",

@@ -15,10 +15,10 @@ export default class CatalogoComponent extends Vue {
 
   private url!: string;
 
-  @Prop({ type: String, required: true, default: "" })
+  @Prop({ type: String, default: "" })
   readonly host!: String;
 
-  @Prop({ type: String, default: "/services/api/catalogos" })
+  @Prop({ type: String, default: "/services/catalogos/api" })
   readonly context!: string;
 
   @Prop({ type: String, default: '' })

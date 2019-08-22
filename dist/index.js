@@ -56,22 +56,14 @@ function (_super) {
     this.selectName = "catalogo-select-" + this.name; // Build url
 
     this.url = this.host + this.context + this.schema['path'] + this.queryParameters;
-    this.loadOptions();
+    this.loadOptions(this.pathVariable, '');
   };
 
-  CatalogoComponent.prototype.replacePathVariable = function (url) {
-    if (this.pathVariable) {
-      return url.replace('{id}', this.pathVariable);
-    }
-
-    return url;
-  };
-
-  CatalogoComponent.prototype.loadOptions = function () {
+  CatalogoComponent.prototype.loadOptions = function (newVal, oldVal) {
     var _this = this;
 
-    this.url = this.replacePathVariable(this.pathVariable);
-    axios.get(this.url).then(function (res) {
+    var replacedUrl = this.url.replace('{id}', newVal);
+    axios.get(replacedUrl).then(function (res) {
       _this.options = res.data;
     });
   };
@@ -89,7 +81,7 @@ function (_super) {
 
   tslib_1.__decorate([vuePropertyDecorator.Prop({
     type: String,
-    default: null
+    default: ''
   })], CatalogoComponent.prototype, "pathVariable", void 0);
 
   tslib_1.__decorate([vuePropertyDecorator.Prop({

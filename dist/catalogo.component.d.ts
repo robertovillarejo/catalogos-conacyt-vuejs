@@ -14,6 +14,5 @@ export default class CatalogoComponent extends Vue {
     readonly lang: String;
     readonly required: Boolean;
     created(): void;
-    replacePathVariable(url: string): string;
-    loadOptions(): void;
+    loadOptions(newVal: string, oldVal: string): void;
 }

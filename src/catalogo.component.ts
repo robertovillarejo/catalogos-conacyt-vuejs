@@ -1,7 +1,7 @@
 import axios from "axios";
 import catalogues from "./catalogues-schema.json";
 import Component from "vue-class-component";
-import { Vue, Prop } from "vue-property-decorator";
+import { Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component
 export default class CatalogoComponent extends Vue {
@@ -18,11 +18,14 @@ export default class CatalogoComponent extends Vue {
   @Prop({ type: String, required: true, default: "" })
   readonly host!: String;
 
-  @Prop({ type: String, default: "" })
+  @Prop({ type: String, default: "/services/api/catalogos" })
   readonly context!: string;
 
+  @Prop({ type: String, default: null })
+  readonly pathVariable!: string;
+
   @Prop({ type: String, default: "" })
-  readonly parameters!: String;
+  readonly queryParameters!: String;
 
   @Prop(String)
   readonly label: String | undefined;
@@ -46,11 +49,20 @@ export default class CatalogoComponent extends Vue {
     // Build select name
     this.selectName = "catalogo-select-" + this.name;
     // Build url
-    this.url = this.host + this.context + this.name + "?idioma=" + this.lang + this.parameters;
+    this.url = this.host + this.context + this.schema['path'] + this.queryParameters;
     this.loadOptions();
   }
 
+  replacePathVariable(url: string): string {
+    if (this.pathVariable) {
+      return url.replace('{id}', this.pathVariable);
+    }
+    return url;
+  }
+
+  @Watch('pathVariable')
   loadOptions() {
+    this.url = this.replacePathVariable(this.pathVariable);
     axios.get(this.url).then(res => {
       this.options = res.data;
     });

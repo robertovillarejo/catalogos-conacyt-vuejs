@@ -1,19 +1,33 @@
 import { __extends, __decorate } from 'tslib';
 import axios from 'axios';
 import Component from 'vue-class-component';
-import { Prop, Vue } from 'vue-property-decorator';
+import { Prop, Watch, Vue } from 'vue-property-decorator';
 
-var estatusSni = {
-	valueProp: "idEstatusSni",
-	textProp: "descEstatusSni"
+var areaConocimiento = {
+	path: "/areas-conocimiento",
+	valueProp: "id",
+	textProp: "descripcion"
 };
-var tipoInstitucion = {
-	valueProp: "idTipoInstitucion",
-	textProp: "descTipoInstitucion"
+var campo = {
+	path: "/areas-conocimiento/{id}/campos",
+	valueProp: "id",
+	textProp: "descripcion"
+};
+var disciplina = {
+	path: "/campos/{id}/disciplinas",
+	valueProp: "id",
+	textProp: "descripcion"
+};
+var subdisciplina = {
+	path: "/disciplinas/{id}/subdisciplinas",
+	valueProp: "id",
+	textProp: "descripcion"
 };
 var catalogues = {
-	estatusSni: estatusSni,
-	tipoInstitucion: tipoInstitucion
+	areaConocimiento: areaConocimiento,
+	campo: campo,
+	disciplina: disciplina,
+	subdisciplina: subdisciplina
 };
 
 var CatalogoComponent =
@@ -35,13 +49,22 @@ function (_super) {
 
     this.selectName = "catalogo-select-" + this.name; // Build url
 
-    this.url = this.host + this.context + this.name + "?idioma=" + this.lang + this.parameters;
+    this.url = this.host + this.context + this.schema['path'] + this.queryParameters;
     this.loadOptions();
+  };
+
+  CatalogoComponent.prototype.replacePathVariable = function (url) {
+    if (this.pathVariable) {
+      return url.replace('{id}', this.pathVariable);
+    }
+
+    return url;
   };
 
   CatalogoComponent.prototype.loadOptions = function () {
     var _this = this;
 
+    this.url = this.replacePathVariable(this.pathVariable);
     axios.get(this.url).then(function (res) {
       _this.options = res.data;
     });
@@ -55,13 +78,18 @@ function (_super) {
 
   __decorate([Prop({
     type: String,
-    default: ""
+    default: "/services/api/catalogos"
   })], CatalogoComponent.prototype, "context", void 0);
 
   __decorate([Prop({
     type: String,
+    default: null
+  })], CatalogoComponent.prototype, "pathVariable", void 0);
+
+  __decorate([Prop({
+    type: String,
     default: ""
-  })], CatalogoComponent.prototype, "parameters", void 0);
+  })], CatalogoComponent.prototype, "queryParameters", void 0);
 
   __decorate([Prop(String)], CatalogoComponent.prototype, "label", void 0);
 
@@ -82,6 +110,8 @@ function (_super) {
     type: Boolean,
     default: true
   })], CatalogoComponent.prototype, "required", void 0);
+
+  __decorate([Watch('pathVariable')], CatalogoComponent.prototype, "loadOptions", null);
 
   CatalogoComponent = __decorate([Component], CatalogoComponent);
   return CatalogoComponent;

@@ -1,26 +1,22 @@
 {
-    "estatusSni": [
+    "areas-conocimiento": [
         {
-            "idEstatusSni": 1,
-            "cveEstatusSni": "ESTATUS1",
-            "descEstatusSni": "ACTIVO"
+            "id": 1,
+            "descripcion": "AreaConocimiento 1"
         },
         {
             "idEstatusSni": 2,
-            "cveEstatusSni": "ESTATUS2",
-            "descEstatusSni": "INACTIVO"
+            "descEstatusSni": "AreaConocimiento 2"
         }
     ],
-    "tipoInstitucion": [
+    "campos": [
         {
-            "idTipoInstitucion": 1,
-            "cveTipoInstitucion": "01",
-            "descTipoInstitucion": "Nacional"
+            "id": 1,
+            "descripcion": "Campo 1"
         },
         {
-            "idTipoInstitucion": 2,
-            "cveTipoInstitucion": "02",
-            "descTipoInstitucion": "Extranjera"
+            "idEstatusSni": 2,
+            "descEstatusSni": "Campo 2"
         }
     ]
 }

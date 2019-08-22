@@ -1,10 +1,22 @@
 {
-    "estatusSni": {
-        "valueProp": "idEstatusSni",
-        "textProp": "descEstatusSni"
+    "areaConocimiento": {
+        "path": "/areas-conocimiento",
+        "valueProp": "id",
+        "textProp": "descripcion"
     },
-    "tipoInstitucion": {
-        "valueProp": "idTipoInstitucion",
-        "textProp": "descTipoInstitucion"
+    "campo": {
+        "path": "/areas-conocimiento/{id}/campos",
+        "valueProp": "id",
+        "textProp": "descripcion"
+    },
+    "disciplina": {
+        "path": "/campos/{id}/disciplinas",
+        "valueProp": "id",
+        "textProp": "descripcion"
+    },
+    "subdisciplina": {
+        "path": "/disciplinas/{id}/subdisciplinas",
+        "valueProp": "id",
+        "textProp": "descripcion"
     }
 }

@@ -6,8 +6,8 @@
         :host="
           'https://my-json-server.typicode.com/robertovillarejo/catalogos-conacyt-vuejs/'
         "
-        :name="'tipoInstitucion'"
-        :lang="lang"
+        :context="''"
+        :name="'areaConocimiento'"
         :required="true"
         v-model="myModel"
       ></catalogo>
@@ -25,7 +25,6 @@ export default Vue.extend({
   components: { catalogo: CatalogoComponent },
   data: function() {
     return {
-      lang: "es",
       myModel: null
     };
   },

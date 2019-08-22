@@ -7,11 +7,13 @@ export default class CatalogoComponent extends Vue {
     private url;
     readonly host: String;
     readonly context: string;
-    readonly parameters: String;
+    readonly pathVariable: string;
+    readonly queryParameters: String;
     readonly label: String | undefined;
     readonly name: string;
     readonly lang: String;
     readonly required: Boolean;
     created(): void;
+    replacePathVariable(url: string): string;
     loadOptions(): void;
 }

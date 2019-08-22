@@ -21,7 +21,7 @@ export default class CatalogoComponent extends Vue {
   @Prop({ type: String, default: "/services/api/catalogos" })
   readonly context!: string;
 
-  @Prop({ type: String, default: null })
+  @Prop({ type: String, default: '' })
   readonly pathVariable!: string;
 
   @Prop({ type: String, default: "" })
@@ -50,20 +50,13 @@ export default class CatalogoComponent extends Vue {
     this.selectName = "catalogo-select-" + this.name;
     // Build url
     this.url = this.host + this.context + this.schema['path'] + this.queryParameters;
-    this.loadOptions();
-  }
-
-  replacePathVariable(url: string): string {
-    if (this.pathVariable) {
-      return url.replace('{id}', this.pathVariable);
-    }
-    return url;
+    this.loadOptions(this.pathVariable, '');
   }
 
   @Watch('pathVariable')
-  loadOptions() {
-    this.url = this.replacePathVariable(this.pathVariable);
-    axios.get(this.url).then(res => {
+  loadOptions(newVal: string, oldVal: string) {
+    let replacedUrl = this.url.replace('{id}', newVal);
+    axios.get(replacedUrl).then(res => {
       this.options = res.data;
     });
   }

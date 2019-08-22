@@ -12,10 +12,11 @@ To install with yarn use `yarn add @conacyt/catalogos`
 <div id="app">
     <catalogo
         :host="
-          'https://my-json-server.typicode.com/robertovillarejo/catalogos-conacyt-vuejs/'
+          'https://my-json-server.typicode.com/robertovillarejo/catalogos-conacyt-vuejs'
         "
-        :name="'tipoInstitucion'"
-        :lang="lang"
+        :context="''"
+        :name="'campo'"
+        :pathVariable="pathVariable"
         :required="true"
         v-model="myModel"
       ></catalogo>

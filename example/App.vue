@@ -4,16 +4,20 @@
     <form action @submit="processRequest">
       <catalogo
         :host="
-          'https://my-json-server.typicode.com/robertovillarejo/catalogos-conacyt-vuejs/'
+          'https://my-json-server.typicode.com/robertovillarejo/catalogos-conacyt-vuejs'
         "
         :context="''"
-        :name="'areaConocimiento'"
+        :name="'campo'"
+        :pathVariable="pathVariable"
         :required="true"
         v-model="myModel"
       ></catalogo>
       <p></p>
       <button type="submit">Send</button>
     </form>
+    <button type="button" @click="changePathVariable">
+      Change pathVariable
+    </button>
   </div>
 </template>
 
@@ -25,12 +29,17 @@ export default Vue.extend({
   components: { catalogo: CatalogoComponent },
   data: function() {
     return {
-      myModel: null
+      myModel: null,
+      pathVariable: "1"
     };
   },
   methods: {
     processRequest: function() {
       alert(JSON.stringify(this.myModel));
+    },
+    changePathVariable: function() {
+      this.pathVariable = this.pathVariable + "0";
+      console.log("PathVariable:", this.pathVariable);
     }
   }
 });

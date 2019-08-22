@@ -5,8 +5,8 @@
             "descripcion": "AreaConocimiento 1"
         },
         {
-            "idEstatusSni": 2,
-            "descEstatusSni": "AreaConocimiento 2"
+            "id": 2,
+            "descripcion": "AreaConocimiento 2"
         }
     ],
     "campos": [
@@ -15,8 +15,28 @@
             "descripcion": "Campo 1"
         },
         {
-            "idEstatusSni": 2,
-            "descEstatusSni": "Campo 2"
+            "id": 2,
+            "descripcion": "Campo 2"
+        }
+    ],
+    "disciplinas": [
+        {
+            "id": 1,
+            "descripcion": "Disciplina 1"
+        },
+        {
+            "id": 2,
+            "descripcion": "Disciplina 2"
+        }
+    ],
+    "subdisciplinas": [
+        {
+            "id": 1,
+            "descripcion": "Subdisciplina 1"
+        },
+        {
+            "id": 2,
+            "descripcion": "Subdisciplina 2"
         }
     ]
 }

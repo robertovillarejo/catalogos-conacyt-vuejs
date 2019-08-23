@@ -1,5 +1,5 @@
 <template>
-  <section class="catalogo">
+  <div>
     <label v-bind:for="selectName">{{ label }}</label>
     <select
       v-bind:name="selectName"
@@ -7,6 +7,7 @@
       v-model="selected"
       :required="required"
       @input="$emit('input', options[$event.target.selectedIndex])"
+      class="form-control"
     >
       <option
         v-for="(option, optionIndex) in options"
@@ -15,7 +16,7 @@
         >{{ option[schema.textProp] }}</option
       >
     </select>
-  </section>
+  </div>
 </template>
 
 <script lang="ts" src="./catalogo.component.ts"></script>

@@ -12,22 +12,22 @@ var vuePropertyDecorator = require('vue-property-decorator');
 var areaConocimiento = {
 	path: "/areas-conocimiento",
 	valueProp: "id",
-	textProp: "descripcion"
+	textProp: "descripcionEsp"
 };
 var campo = {
 	path: "/areas-conocimiento/{id}/campos",
 	valueProp: "id",
-	textProp: "descripcion"
+	textProp: "descripcionEsp"
 };
 var disciplina = {
 	path: "/campos/{id}/disciplinas",
 	valueProp: "id",
-	textProp: "descripcion"
+	textProp: "descripcionEsp"
 };
 var subdisciplina = {
 	path: "/disciplinas/{id}/subdisciplinas",
 	valueProp: "id",
-	textProp: "descripcion"
+	textProp: "descripcionEsp"
 };
 var catalogues = {
 	areaConocimiento: areaConocimiento,
@@ -70,13 +70,13 @@ function (_super) {
 
   tslib_1.__decorate([vuePropertyDecorator.Prop({
     type: String,
-    required: true,
+    required: false,
     default: ""
   })], CatalogoComponent.prototype, "host", void 0);
 
   tslib_1.__decorate([vuePropertyDecorator.Prop({
     type: String,
-    default: "/services/api/catalogos"
+    default: "/services/catalogos/api"
   })], CatalogoComponent.prototype, "context", void 0);
 
   tslib_1.__decorate([vuePropertyDecorator.Prop({

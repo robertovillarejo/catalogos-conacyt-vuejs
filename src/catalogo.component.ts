@@ -15,7 +15,7 @@ export default class CatalogoComponent extends Vue {
 
   private url!: string;
 
-  @Prop({ type: String, default: "" })
+  @Prop({ type: String, required: false, default: "" })
   readonly host!: String;
 
   @Prop({ type: String, default: "/services/catalogos/api" })

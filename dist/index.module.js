@@ -120,9 +120,7 @@ var __vue_render__ = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('section', {
-    staticClass: "catalogo"
-  }, [_c('label', {
+  return _c('div', [_c('label', {
     attrs: {
       "for": _vm.selectName
     }
@@ -133,6 +131,7 @@ var __vue_render__ = function __vue_render__() {
       value: _vm.selected,
       expression: "selected"
     }],
+    staticClass: "form-control",
     attrs: {
       "name": _vm.selectName,
       "id": _vm.selectName,

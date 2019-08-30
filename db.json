@@ -2,41 +2,49 @@
     "areas-conocimiento": [
         {
             "id": 1,
-            "descripcion": "AreaConocimiento 1"
+            "descripcion": "AreaConocimiento 1",
+            "descripcionEsp": "AreaConocimiento 1"
         },
         {
             "id": 2,
-            "descripcion": "AreaConocimiento 2"
+            "descripcion": "AreaConocimiento 2",
+            "descripcionEsp": "AreaConocimiento 2"
         }
     ],
     "campos": [
         {
             "id": 1,
-            "descripcion": "Campo 1"
+            "descripcion": "Campo 1",
+            "descripcionEsp": "Campo 1"
         },
         {
             "id": 2,
-            "descripcion": "Campo 2"
+            "descripcion": "Campo 2",
+            "descripcionEsp": "Campo 2"
         }
     ],
     "disciplinas": [
         {
             "id": 1,
-            "descripcion": "Disciplina 1"
+            "descripcion": "Disciplina 1",
+            "descripcionEsp": "Disciplina 1"
         },
         {
             "id": 2,
-            "descripcion": "Disciplina 2"
+            "descripcion": "Disciplina 2",
+            "descripcionEsp": "Disciplina 2"
         }
     ],
     "subdisciplinas": [
         {
             "id": 1,
-            "descripcion": "Subdisciplina 1"
+            "descripcion": "Subdisciplina 1",
+            "descripcionEsp": "Subdisciplina 1"
         },
         {
             "id": 2,
-            "descripcion": "Subdisciplina 2"
+            "descripcion": "Subdisciplina 2",
+            "descripcionEsp": "Subdisciplina 2"
         }
     ]
 }

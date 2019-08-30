@@ -45,7 +45,6 @@ function (_super) {
     var _this = _super !== null && _super.apply(this, arguments) || this;
 
     _this.options = [];
-    _this.selected = {};
     return _this;
   }
 
@@ -55,14 +54,14 @@ function (_super) {
 
     this.selectName = "catalogo-select-" + this.name; // Build url
 
-    this.url = this.host + this.context + this.schema['path'] + this.queryParameters;
-    this.loadOptions(this.pathVariable, '');
+    this.url = this.host + this.context + this.schema["path"] + this.queryParameters;
+    this.loadOptions(this.pathVariable, "");
   };
 
   CatalogoComponent.prototype.loadOptions = function (newVal, oldVal) {
     var _this = this;
 
-    var replacedUrl = this.url.replace('{id}', newVal);
+    var replacedUrl = this.url.replace("{id}", newVal);
     axios.get(replacedUrl).then(function (res) {
       _this.options = res.data;
     });
@@ -81,7 +80,7 @@ function (_super) {
 
   tslib_1.__decorate([vuePropertyDecorator.Prop({
     type: String,
-    default: ''
+    default: ""
   })], CatalogoComponent.prototype, "pathVariable", void 0);
 
   tslib_1.__decorate([vuePropertyDecorator.Prop({
@@ -90,6 +89,8 @@ function (_super) {
   })], CatalogoComponent.prototype, "queryParameters", void 0);
 
   tslib_1.__decorate([vuePropertyDecorator.Prop(String)], CatalogoComponent.prototype, "label", void 0);
+
+  tslib_1.__decorate([vuePropertyDecorator.Prop()], CatalogoComponent.prototype, "value", void 0);
 
   tslib_1.__decorate([vuePropertyDecorator.Prop({
     type: String,
@@ -109,7 +110,7 @@ function (_super) {
     default: true
   })], CatalogoComponent.prototype, "required", void 0);
 
-  tslib_1.__decorate([vuePropertyDecorator.Watch('pathVariable')], CatalogoComponent.prototype, "loadOptions", null);
+  tslib_1.__decorate([vuePropertyDecorator.Watch("pathVariable")], CatalogoComponent.prototype, "loadOptions", null);
 
   CatalogoComponent = tslib_1.__decorate([Component], CatalogoComponent);
   return CatalogoComponent;
@@ -131,12 +132,6 @@ var __vue_render__ = function __vue_render__() {
       "for": _vm.selectName
     }
   }, [_vm._v(_vm._s(_vm.label))]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.selected,
-      expression: "selected"
-    }],
     staticClass: "form-control",
     attrs: {
       "name": _vm.selectName,
@@ -146,22 +141,14 @@ var __vue_render__ = function __vue_render__() {
     on: {
       "input": function input($event) {
         return _vm.$emit('input', _vm.options[$event.target.selectedIndex]);
-      },
-      "change": function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.selected = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
       }
     }
   }, _vm._l(_vm.options, function (option, optionIndex) {
     return _c('option', {
       key: optionIndex,
       domProps: {
-        "value": option[_vm.schema.valueProp]
+        "value": option[_vm.schema.valueProp],
+        "selected": _vm.value && option[_vm.schema.valueProp] === _vm.value[_vm.schema.valueProp]
       }
     }, [_vm._v(_vm._s(option[_vm.schema.textProp]))]);
   }), 0)]);
@@ -207,7 +194,7 @@ var CatalogoComponent$1 = __vue_normalize__({
 
 var index = {
   install: function install(Vue, options) {
-    Vue.component('catalogo', CatalogoComponent$1);
+    Vue.component("catalogo", CatalogoComponent$1);
   }
 };
 

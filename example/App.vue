@@ -29,7 +29,9 @@ export default Vue.extend({
   components: { catalogo: CatalogoComponent },
   data: function() {
     return {
-      myModel: null,
+      myModel: {
+        id: 2
+      },
       pathVariable: "1"
     };
   },

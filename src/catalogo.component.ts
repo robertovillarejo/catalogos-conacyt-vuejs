@@ -5,13 +5,11 @@ import { Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component
 export default class CatalogoComponent extends Vue {
-  private options: Array<any> = [];
+  public options: Array<any> = [];
 
   private schema!: Object;
 
-  private selected: Object = {};
-
-  private selectName!: String;
+  public selectName!: String;
 
   private url!: string;
 
@@ -21,7 +19,7 @@ export default class CatalogoComponent extends Vue {
   @Prop({ type: String, default: "/services/catalogos/api" })
   readonly context!: string;
 
-  @Prop({ type: String, default: '' })
+  @Prop({ type: String, default: "" })
   readonly pathVariable!: string;
 
   @Prop({ type: String, default: "" })
@@ -29,6 +27,9 @@ export default class CatalogoComponent extends Vue {
 
   @Prop(String)
   readonly label: String | undefined;
+
+  @Prop()
+  value: any; // Reading from v-model
 
   @Prop({
     type: String,
@@ -49,13 +50,14 @@ export default class CatalogoComponent extends Vue {
     // Build select name
     this.selectName = "catalogo-select-" + this.name;
     // Build url
-    this.url = this.host + this.context + this.schema['path'] + this.queryParameters;
-    this.loadOptions(this.pathVariable, '');
+    this.url =
+      this.host + this.context + this.schema["path"] + this.queryParameters;
+    this.loadOptions(this.pathVariable, "");
   }
 
-  @Watch('pathVariable')
+  @Watch("pathVariable")
   loadOptions(newVal: string, oldVal: string) {
-    let replacedUrl = this.url.replace('{id}', newVal);
+    let replacedUrl = this.url.replace("{id}", newVal);
     axios.get(replacedUrl).then(res => {
       this.options = res.data;
     });

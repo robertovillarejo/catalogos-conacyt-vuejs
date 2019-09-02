@@ -30,7 +30,7 @@ export default Vue.extend({
   data: function() {
     return {
       myModel: {
-        id: 2
+        id: null
       },
       pathVariable: "1"
     };

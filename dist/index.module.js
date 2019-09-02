@@ -134,10 +134,14 @@ var __vue_render__ = function __vue_render__() {
     },
     on: {
       "input": function input($event) {
-        return _vm.$emit('input', _vm.options[$event.target.selectedIndex]);
+        return _vm.$emit('input', _vm.options[$event.target.selectedIndex - 1]);
       }
     }
-  }, _vm._l(_vm.options, function (option, optionIndex) {
+  }, [_c('option', {
+    attrs: {
+      "value": ""
+    }
+  }), _vm._v(" "), _vm._l(_vm.options, function (option, optionIndex) {
     return _c('option', {
       key: optionIndex,
       domProps: {
@@ -145,7 +149,7 @@ var __vue_render__ = function __vue_render__() {
         "selected": _vm.value && option[_vm.schema.valueProp] === _vm.value[_vm.schema.valueProp]
       }
     }, [_vm._v(_vm._s(option[_vm.schema.textProp]))]);
-  }), 0)]);
+  })], 2)]);
 };
 
 var __vue_staticRenderFns__ = [];

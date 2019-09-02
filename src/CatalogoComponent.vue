@@ -6,8 +6,9 @@
       v-bind:id="selectName"
       :required="required"
       class="form-control"
-      @input="$emit('input', options[$event.target.selectedIndex])"
+      @input="$emit('input', options[$event.target.selectedIndex - 1])"
     >
+      <option value></option>
       <option
         v-for="(option, optionIndex) in options"
         v-bind:key="optionIndex"

@@ -121,11 +121,11 @@ var __vue_render__ = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('div', [_c('label', {
+  return _c('div', [_vm.label ? _c('label', {
     attrs: {
       "for": _vm.selectName
     }
-  }, [_vm._v(_vm._s(_vm.label))]), _vm._v(" "), _c('select', {
+  }, [_vm._v(_vm._s(_vm.label))]) : _vm._e(), _vm._v(" "), _c('select', {
     staticClass: "form-control",
     attrs: {
       "name": _vm.selectName,

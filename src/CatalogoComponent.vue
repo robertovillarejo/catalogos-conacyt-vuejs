@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label v-bind:for="selectName">{{ label }}</label>
+    <label v-bind:for="selectName" v-if="label">{{ label }}</label>
     <select
       v-bind:name="selectName"
       v-bind:id="selectName"

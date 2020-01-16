@@ -1,18 +1,24 @@
 import { Vue } from "vue-property-decorator";
+export declare class Options {
+    host: string;
+    context: string;
+    constructor(host?: string, context?: string);
+}
+declare const defaultConfig: Options;
+export { defaultConfig };
 export default class CatalogoComponent extends Vue {
     options: Array<any>;
     private schema;
-    selectName: String;
+    selectName: string;
     private url;
-    readonly host: String;
-    readonly context: string;
     readonly pathVariable: string;
-    readonly queryParameters: String;
-    readonly label: String | undefined;
+    readonly queryParameters: string;
+    readonly label: string | undefined;
     value: any;
     readonly name: string;
-    readonly lang: String;
-    readonly required: Boolean;
+    readonly lang: string;
+    readonly required: boolean;
+    readonly globalOptions: Options;
     created(): void;
     loadOptions(newVal: string, oldVal: string): void;
 }

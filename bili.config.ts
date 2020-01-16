@@ -4,7 +4,7 @@ const config: Config = {
   input: "src/index.ts",
   output: {
     format: ["cjs", "umd", "esm"],
-    moduleName: "hello-world",
+    moduleName: "catalogos",
     sourceMap: true,
     sourceMapExcludeSources: true
   },

@@ -3,30 +3,40 @@ import catalogues from "./catalogues-schema.json";
 import Component from "vue-class-component";
 import { Vue, Prop, Watch } from "vue-property-decorator";
 
+export class Options {
+  public host: string;
+  public context: string;
+  constructor(
+    host?: string,
+    context?: string
+  ) {
+    this.host = host || '';
+    this.context = context || '/services/catalogos/api';
+  }
+}
+
+const defaultConfig = new Options();
+
+export { defaultConfig };
+
 @Component
 export default class CatalogoComponent extends Vue {
   public options: Array<any> = [];
 
   private schema!: Object;
 
-  public selectName!: String;
+  public selectName!: string;
 
   private url!: string;
-
-  @Prop({ type: String, required: false, default: "" })
-  readonly host!: String;
-
-  @Prop({ type: String, default: "/services/catalogos/api" })
-  readonly context!: string;
 
   @Prop({ type: String, default: "" })
   readonly pathVariable!: string;
 
   @Prop({ type: String, default: "" })
-  readonly queryParameters!: String;
+  readonly queryParameters!: string;
 
   @Prop(String)
-  readonly label: String | undefined;
+  readonly label: string | undefined;
 
   @Prop()
   value: any; // Reading from v-model
@@ -39,10 +49,14 @@ export default class CatalogoComponent extends Vue {
   readonly name!: string;
 
   @Prop({ type: String, default: "es" })
-  readonly lang!: String;
+  readonly lang!: string;
 
   @Prop({ type: Boolean, default: true })
-  readonly required!: Boolean;
+  readonly required!: boolean;
+
+  public get globalOptions(): Options {
+    return (<any>this).$CATALOGOS_DEFAULT_OPTIONS || defaultConfig;
+  }
 
   created() {
     // Selecting schema
@@ -51,7 +65,7 @@ export default class CatalogoComponent extends Vue {
     this.selectName = "catalogo-select-" + this.name;
     // Build url
     this.url =
-      this.host + this.context + this.schema["path"] + this.queryParameters;
+      this.globalOptions.host + this.globalOptions.context + this.schema["path"] + this.queryParameters;
     this.loadOptions(this.pathVariable, "");
   }
 

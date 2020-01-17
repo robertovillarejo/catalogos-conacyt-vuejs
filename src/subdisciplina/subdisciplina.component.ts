@@ -1,7 +1,7 @@
+import { defaultConfig, Options } from '@/catalogo.component';
 import { NestedSelectComponent } from "@conacyt/nested-select";
 import Component from "vue-class-component";
 import { Prop, Vue } from "vue-property-decorator";
-import { Options, defaultConfig } from '@/catalogo.component';
 
 @Component({
     components: {
@@ -14,12 +14,12 @@ import { Options, defaultConfig } from '@/catalogo.component';
         }
     }
 })
-export default class DisciplinaComponent extends Vue {
+export default class SubdisciplinaComponent extends Vue {
 
-    @Prop({ required: true, type: Object })
+    @Prop({ type: Object, default: {} })
     readonly value!: any;
 
-    @Prop({ required: false, default: true, type: Boolean })
+    @Prop({ required: false, default: false, type: Boolean })
     public readonly required!: boolean;
 
     public get options(): Options {

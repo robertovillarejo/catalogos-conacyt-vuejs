@@ -24,7 +24,7 @@ const config: Config = {
     }
     return config;
   },
-  externals: ["vue-class-component", "vue-property-decorator", "axios"]
+  externals: ["vue-class-component", "vue-property-decorator", "axios", "bootstrap", "bootstrap-vue"]
 }
 
 export default config;

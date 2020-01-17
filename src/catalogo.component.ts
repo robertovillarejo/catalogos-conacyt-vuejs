@@ -8,7 +8,8 @@ export class Options {
   public context: string;
   constructor(
     host?: string,
-    context?: string
+    context?: string,
+    public requiredLevel?: string
   ) {
     this.host = host || '';
     this.context = context || '/services/catalogos/api';

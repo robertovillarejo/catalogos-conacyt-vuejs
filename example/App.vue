@@ -26,34 +26,47 @@
     <button type="button" @click="changePathVariable">
       Change pathVariable
     </button>
+    <h2>AreaConocimientoCrud Component</h2>
+    <area-conocimiento-crud v-model="areas"></area-conocimiento-crud>
   </div>
 </template>
 
 <script lang="ts">
 import Vue, { VueConstructor } from "vue";
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import CatalogoComponent from "../src/index";
 
 Vue.use(CatalogoComponent, {
   host:
     "https://my-json-server.typicode.com/robertovillarejo/catalogos-conacyt-vuejs",
-  context: ""
+  context: "",
+  requiredLevel: "subdisciplina"
 });
 
 export default Vue.extend({
   data: function() {
     return {
-      areaConocimiento: {
-        id: 1,
-        descripcion: "AreaConocimiento 1",
-        descripcionEsp: "AreaConocimiento 1"
-      },
-      campo: {},
-      disciplina: {},
-      subdisciplina: {},
+      areaConocimiento: null,
+      campo: null,
+      disciplina: null,
+      subdisciplina: null,
       myModel: {
         id: null
       },
-      pathVariable: "1"
+      pathVariable: "1",
+      areas: [
+        {
+          idArea: 1,
+          area: "Área 1",
+          idCampo: 1,
+          campo: "Campo 1",
+          idDisciplina: 1,
+          disciplina: "Disciplina 1",
+          idSubdisciplina: 1,
+          subdisciplina: "Subdisciplina 1"
+        }
+      ]
     };
   },
   methods: {

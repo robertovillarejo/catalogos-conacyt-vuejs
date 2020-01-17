@@ -4,6 +4,7 @@
     :hierarchy="hierarchyModel"
     v-model="model"
     :required="required"
+    @complete="$emit('complete', $event)"
   ></nested-select>
 </template>
 

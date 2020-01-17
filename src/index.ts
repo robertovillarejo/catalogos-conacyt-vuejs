@@ -4,6 +4,7 @@ import { defaultConfig } from "./catalogo.component";
 import CatalogoComponent from "./CatalogoComponent.vue";
 import DisciplinaComponent from "./disciplina/disciplina.vue";
 import SubdisciplinaComponent from "./subdisciplina/subdisciplina.vue";
+import AreaConocimientoCrudComponent from "./area-conocimiento-crud/area-conocimiento-crud.vue";
 
 export default {
   install(Vue: any, globalOptions: any) {
@@ -14,6 +15,7 @@ export default {
     Vue.component("campo", CampoComponent);
     Vue.component("disciplina", DisciplinaComponent);
     Vue.component("subdisciplina", SubdisciplinaComponent);
+    Vue.component("area-conocimiento-crud", AreaConocimientoCrudComponent);
   }
 };
 
@@ -22,5 +24,6 @@ export {
   AreaConocimientoComponent,
   CampoComponent,
   DisciplinaComponent,
-  SubdisciplinaComponent
+  SubdisciplinaComponent,
+  AreaConocimientoCrudComponent
 };

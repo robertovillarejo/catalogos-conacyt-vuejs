@@ -3,6 +3,29 @@ import Component from "vue-class-component";
 import { Prop, Vue } from "vue-property-decorator";
 import { Options, defaultConfig } from '@/catalogo.component';
 
+const disciplinaHierachy = [
+    {
+        path: "/areas-conocimiento",
+        prop: "id",
+        label: "descripcionEsp",
+        selectLabel: "Area de conocimiento: "
+    },
+    {
+        path: "/areas-conocimiento/[id]/campos",
+        prop: "id",
+        label: "descripcionEsp",
+        selectLabel: "Campo: "
+    },
+    {
+        path: "/campos/[id]/disciplinas",
+        prop: "id",
+        label: "descripcionEsp",
+        selectLabel: "Disciplinas: "
+    }
+];
+
+export { disciplinaHierachy };
+
 @Component({
     components: {
         'nested-select': NestedSelectComponent
@@ -26,24 +49,5 @@ export default class DisciplinaComponent extends Vue {
         return (<any>this).$CATALOGOS_DEFAULT_OPTIONS || defaultConfig;
     }
 
-    public readonly hierarchyModel = [
-        {
-            path: "/areas-conocimiento",
-            prop: "id",
-            label: "descripcionEsp",
-            selectLabel: "Area de conocimiento: "
-        },
-        {
-            path: "/areas-conocimiento/[id]/campos",
-            prop: "id",
-            label: "descripcionEsp",
-            selectLabel: "Campo: "
-        },
-        {
-            path: "/campos/[id]/disciplinas",
-            prop: "id",
-            label: "descripcionEsp",
-            selectLabel: "Disciplinas: "
-        }
-    ];
+    public hierarchyModel = disciplinaHierachy;
 }

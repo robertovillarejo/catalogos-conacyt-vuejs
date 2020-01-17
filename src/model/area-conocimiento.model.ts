@@ -1,5 +1,6 @@
 
 export interface IAreaDeConocimiento {
+    id?: number;
     idArea?: number;
     area?: string;
     idCampo?: number;
@@ -13,6 +14,7 @@ export interface IAreaDeConocimiento {
 
 export class AreaDeConocimiento implements IAreaDeConocimiento {
     constructor(
+        public id?: number,
         public idArea?: number,
         public area?: string,
         public idCampo?: number,

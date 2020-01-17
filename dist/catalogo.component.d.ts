@@ -1,8 +1,9 @@
 import { Vue } from "vue-property-decorator";
 export declare class Options {
+    requiredLevel?: string | undefined;
     host: string;
     context: string;
-    constructor(host?: string, context?: string);
+    constructor(host?: string, context?: string, requiredLevel?: string | undefined);
 }
 declare const defaultConfig: Options;
 export { defaultConfig };

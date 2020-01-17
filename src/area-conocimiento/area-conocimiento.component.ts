@@ -3,7 +3,7 @@ import Component from "vue-class-component";
 import { Prop, Vue } from "vue-property-decorator";
 import { Options, defaultConfig } from '@/catalogo.component';
 
-const hierarchyModel = [
+const areaConocimientoHierarchy = [
     {
         path: "/areas-conocimiento",
         prop: "id",
@@ -11,6 +11,7 @@ const hierarchyModel = [
         selectLabel: "Area de conocimiento: "
     }
 ];
+export { areaConocimientoHierarchy };
 @Component({
     components: {
         'nested-select': NestedSelectComponent
@@ -30,7 +31,7 @@ export default class AreaConocimientoComponent extends Vue {
     @Prop({ required: false, default: false, type: Boolean })
     public readonly required!: boolean;
 
-    public hierarchyModel = hierarchyModel;
+    public hierarchyModel = areaConocimientoHierarchy;
 
     public get options(): Options {
         return (<any>this).$CATALOGOS_DEFAULT_OPTIONS || defaultConfig;

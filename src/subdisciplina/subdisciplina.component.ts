@@ -3,6 +3,35 @@ import { NestedSelectComponent } from "@conacyt/nested-select";
 import Component from "vue-class-component";
 import { Prop, Vue } from "vue-property-decorator";
 
+const subdisciplinaHierachy = [
+    {
+        path: "/areas-conocimiento",
+        prop: "id",
+        label: "descripcionEsp",
+        selectLabel: "Area de conocimiento: "
+    },
+    {
+        path: "/areas-conocimiento/[id]/campos",
+        prop: "id",
+        label: "descripcionEsp",
+        selectLabel: "Campo: "
+    },
+    {
+        path: "/campos/[id]/disciplinas",
+        prop: "id",
+        label: "descripcionEsp",
+        selectLabel: "Disciplina: "
+    },
+    {
+        path: "/disciplinas/[id]/subdisciplinas",
+        prop: "id",
+        label: "descripcionEsp",
+        selectLabel: "Subdisciplina: "
+    }
+];
+
+export { subdisciplinaHierachy };
+
 @Component({
     components: {
         'nested-select': NestedSelectComponent
@@ -26,30 +55,5 @@ export default class SubdisciplinaComponent extends Vue {
         return (<any>this).$CATALOGOS_DEFAULT_OPTIONS || defaultConfig;
     }
 
-    public readonly hierarchyModel = [
-        {
-            path: "/areas-conocimiento",
-            prop: "id",
-            label: "descripcionEsp",
-            selectLabel: "Area de conocimiento: "
-        },
-        {
-            path: "/areas-conocimiento/[id]/campos",
-            prop: "id",
-            label: "descripcionEsp",
-            selectLabel: "Campo: "
-        },
-        {
-            path: "/campos/[id]/disciplinas",
-            prop: "id",
-            label: "descripcionEsp",
-            selectLabel: "Disciplina: "
-        },
-        {
-            path: "/disciplinas/[id]/subdisciplinas",
-            prop: "id",
-            label: "descripcionEsp",
-            selectLabel: "Subdisciplina: "
-        }
-    ];
+    public hierarchyModel = subdisciplinaHierachy;
 }

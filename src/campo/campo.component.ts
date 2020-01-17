@@ -3,6 +3,23 @@ import Component from "vue-class-component";
 import { Prop, Vue } from "vue-property-decorator";
 import { Options, defaultConfig } from '@/catalogo.component';
 
+const campoHierarchy = [
+    {
+        path: "/areas-conocimiento",
+        prop: "id",
+        label: "descripcionEsp",
+        selectLabel: "Area de conocimiento: "
+    },
+    {
+        path: "/areas-conocimiento/[id]/campos",
+        prop: "id",
+        label: "descripcionEsp",
+        selectLabel: "Campo: "
+    }
+];
+
+export { campoHierarchy };
+
 @Component({
     components: {
         'nested-select': NestedSelectComponent
@@ -26,18 +43,5 @@ export default class CampoComponent extends Vue {
         return (<any>this).$CATALOGOS_DEFAULT_OPTIONS || defaultConfig;
     }
 
-    public readonly hierarchyModel = [
-        {
-            path: "/areas-conocimiento",
-            prop: "id",
-            label: "descripcionEsp",
-            selectLabel: "Area de conocimiento: "
-        },
-        {
-            path: "/areas-conocimiento/[id]/campos",
-            prop: "id",
-            label: "descripcionEsp",
-            selectLabel: "Campo: "
-        }
-    ];
+    public hierarchyModel = campoHierarchy;
 }

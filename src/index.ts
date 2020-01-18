@@ -1,10 +1,10 @@
+import { defaultConfig } from '@/model/options.model';
+import AreaConocimientoCrudComponent from "./area-conocimiento-crud/area-conocimiento-crud.vue";
 import AreaConocimientoComponent from "./area-conocimiento/area-conocimiento.vue";
 import CampoComponent from "./campo/campo.vue";
-import { defaultConfig } from "./catalogo.component";
 import CatalogoComponent from "./CatalogoComponent.vue";
 import DisciplinaComponent from "./disciplina/disciplina.vue";
 import SubdisciplinaComponent from "./subdisciplina/subdisciplina.vue";
-import AreaConocimientoCrudComponent from "./area-conocimiento-crud/area-conocimiento-crud.vue";
 
 export default {
   install(Vue: any, globalOptions: any) {
@@ -19,11 +19,5 @@ export default {
   }
 };
 
-export {
-  CatalogoComponent,
-  AreaConocimientoComponent,
-  CampoComponent,
-  DisciplinaComponent,
-  SubdisciplinaComponent,
-  AreaConocimientoCrudComponent
-};
+export { CatalogoComponent, AreaConocimientoComponent, CampoComponent, DisciplinaComponent, SubdisciplinaComponent, AreaConocimientoCrudComponent };
+

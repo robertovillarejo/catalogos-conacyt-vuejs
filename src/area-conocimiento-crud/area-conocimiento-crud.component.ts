@@ -1,8 +1,8 @@
 import { areaConocimientoHierarchy } from "@/area-conocimiento/area-conocimiento.component";
 import { campoHierarchy } from "@/campo/campo.component";
-import { defaultConfig, Options } from '@/catalogo.component';
 import { disciplinaHierachy } from "@/disciplina/disciplina.component";
 import { AreaDeConocimiento, IAreaDeConocimiento } from '@/model/area-conocimiento.model';
+import { defaultConfig, Options } from '@/model/options.model';
 import { subdisciplinaHierachy } from "@/subdisciplina/subdisciplina.component";
 import { NestedSelectComponent } from "@conacyt/nested-select";
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -13,6 +13,7 @@ import bModal from 'bootstrap-vue/es/components/modal/modal';
 import bModalDirective from 'bootstrap-vue/es/directives/modal/modal';
 import Component from "vue-class-component";
 import { Prop, Vue } from "vue-property-decorator";
+import { Level } from './level.model';
 
 library.add(faTimes);
 
@@ -29,6 +30,8 @@ library.add(faTimes);
 })
 export default class AreaConocimientoCrudComponent extends Vue {
 
+    public readonly Level = Level;
+
     @Prop({ required: true, type: Array })
     readonly value!: Array<IAreaDeConocimiento>;
 
@@ -40,21 +43,24 @@ export default class AreaConocimientoCrudComponent extends Vue {
 
     public removeInstance: any;
 
+    public especialidad: string = '';
+
     created() {
         switch (this.options.requiredLevel) {
-            case 'area':
+            case Level.AREA:
                 this.hierarchyModel = areaConocimientoHierarchy;
                 break;
 
-            case 'campo':
+            case Level.CAMPO:
                 this.hierarchyModel = campoHierarchy;
                 break;
 
-            case 'disciplina':
+            case Level.DISCIPLINA:
                 this.hierarchyModel = disciplinaHierachy;
                 break;
 
-            case 'subdisciplina':
+            case Level.SUBDISCIPLINA:
+            case Level.ESPECIALIDAD:
                 this.hierarchyModel = subdisciplinaHierachy;
                 break;
 
@@ -93,6 +99,9 @@ export default class AreaConocimientoCrudComponent extends Vue {
         if (maybeArea) {
             value.idArea = maybeArea.id;
             value.area = maybeArea.descripcionEsp;
+        }
+        if (this.especialidad) {
+            value.especialidad = this.especialidad;
         }
         return value;
     }

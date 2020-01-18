@@ -1,14 +1,14 @@
+import { defaultConfig, Options } from '@/model/options.model';
 import { NestedSelectComponent } from "@conacyt/nested-select";
 import Component from "vue-class-component";
 import { Prop, Vue } from "vue-property-decorator";
-import { Options, defaultConfig } from '@/catalogo.component';
 
 const areaConocimientoHierarchy = [
     {
         path: "/areas-conocimiento",
         prop: "id",
         label: "descripcionEsp",
-        selectLabel: "Area de conocimiento: "
+        selectLabel: "Area de conocimiento"
     }
 ];
 export { areaConocimientoHierarchy };

@@ -11,18 +11,32 @@
           <h5>Áreas de conocimiento</h5>
         </caption>
         <thead>
-          <th scope="col">Área</th>
-          <th scope="col">Campo</th>
-          <th scope="col">Disciplina</th>
-          <th scope="col">Subdisciplina</th>
+          <th scope="col" v-if="options.requiredLevel >= Level.AREA">Área</th>
+          <th scope="col" v-if="options.requiredLevel >= Level.CAMPO">Campo</th>
+          <th scope="col" v-if="options.requiredLevel >= Level.DISCIPLINA">
+            Disciplina
+          </th>
+          <th scope="col" v-if="options.requiredLevel >= Level.SUBDISCIPLINA">
+            Subdisciplina
+          </th>
+          <th scope="col" v-if="options.requiredLevel >= Level.ESPECIALIDAD">
+            Especialidad
+          </th>
           <th scope="col"></th>
         </thead>
         <tbody>
           <tr v-for="(e, i) in value" v-bind:key="i">
-            <td>{{ e.area }}</td>
-            <td>{{ e.campo }}</td>
-            <td>{{ e.disciplina }}</td>
-            <td>{{ e.subdisciplina }}</td>
+            <td v-if="options.requiredLevel >= Level.AREA">{{ e.area }}</td>
+            <td v-if="options.requiredLevel >= Level.CAMPO">{{ e.campo }}</td>
+            <td v-if="options.requiredLevel >= Level.DISCIPLINA">
+              {{ e.disciplina }}
+            </td>
+            <td v-if="options.requiredLevel >= Level.SUBDISCIPLINA">
+              {{ e.subdisciplina }}
+            </td>
+            <td v-if="options.requiredLevel >= Level.ESPECIALIDAD">
+              {{ e.especialidad }}
+            </td>
             <td class="text-right">
               <div class="btn-group flex-btn-group-container">
                 <b-button
@@ -42,13 +56,31 @@
     <b-modal id="areaConocimientoCrud" ref="areaConocimientoCrud">
       <span slot="modal-title">Agregar área de conocimiento</span>
       <div class="modal-body">
-        <nested-select
-          :host="options.host"
-          :hierarchy="hierarchyModel"
-          v-model="model"
-          :required="true"
-          @complete="fullModel = $event"
-        ></nested-select>
+        <form name="addAreaConocimientoForm" role="form" @submit.prevent="">
+          <div>
+            <!--NestedSelect is a div with 'form-group' class-->
+            <nested-select
+              :host="options.host"
+              :hierarchy="hierarchyModel"
+              v-model="model"
+              :required="true"
+              @complete="fullModel = $event"
+            ></nested-select>
+            <div
+              class="form-group"
+              v-if="options.requiredLevel === Level.ESPECIALIDAD"
+            >
+              <label for="especialidad">Especialidad</label>
+              <input
+                type="text"
+                class="form-control"
+                id="especialidad"
+                name="especialidad"
+                v-model.trim="especialidad"
+              />
+            </div>
+          </div>
+        </form>
       </div>
       <div slot="modal-footer">
         <button

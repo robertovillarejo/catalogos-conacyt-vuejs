@@ -1,4 +1,4 @@
-import { defaultConfig, Options } from '@/catalogo.component';
+import { defaultConfig, Options } from '@/model/options.model';
 import { NestedSelectComponent } from "@conacyt/nested-select";
 import Component from "vue-class-component";
 import { Prop, Vue } from "vue-property-decorator";
@@ -8,25 +8,25 @@ const subdisciplinaHierachy = [
         path: "/areas-conocimiento",
         prop: "id",
         label: "descripcionEsp",
-        selectLabel: "Area de conocimiento: "
+        selectLabel: "Area de conocimiento"
     },
     {
         path: "/areas-conocimiento/[id]/campos",
         prop: "id",
         label: "descripcionEsp",
-        selectLabel: "Campo: "
+        selectLabel: "Campo"
     },
     {
         path: "/campos/[id]/disciplinas",
         prop: "id",
         label: "descripcionEsp",
-        selectLabel: "Disciplina: "
+        selectLabel: "Disciplina"
     },
     {
         path: "/disciplinas/[id]/subdisciplinas",
         prop: "id",
         label: "descripcionEsp",
-        selectLabel: "Subdisciplina: "
+        selectLabel: "Subdisciplina"
     }
 ];
 

@@ -2,23 +2,7 @@ import axios from "axios";
 import catalogues from "./catalogues-schema.json";
 import Component from "vue-class-component";
 import { Vue, Prop, Watch } from "vue-property-decorator";
-
-export class Options {
-  public host: string;
-  public context: string;
-  constructor(
-    host?: string,
-    context?: string,
-    public requiredLevel?: string
-  ) {
-    this.host = host || '';
-    this.context = context || '/services/catalogos/api';
-  }
-}
-
-const defaultConfig = new Options();
-
-export { defaultConfig };
+import { defaultConfig, Options } from '@/model/options.model';
 
 @Component
 export default class CatalogoComponent extends Vue {

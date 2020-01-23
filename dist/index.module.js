@@ -1,137 +1,45 @@
 import { __extends, __decorate, __assign } from 'tslib';
 import { NestedSelectComponent } from '@conacyt/nested-select';
 import Component from 'vue-class-component';
-import { Prop, Watch, Vue } from 'vue-property-decorator';
-import axios from 'axios';
+import { Prop, Vue, Watch } from 'vue-property-decorator';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import bButton from 'bootstrap-vue/es/components/button/button';
 import bModal from 'bootstrap-vue/es/components/modal/modal';
 import bModalDirective from 'bootstrap-vue/es/directives/modal/modal';
+import { required, requiredIf } from 'vuelidate/lib/validators';
+import axios from 'axios';
 
-var areaConocimiento = {
-	path: "/areas-conocimiento",
-	valueProp: "id",
-	textProp: "descripcionEsp"
-};
-var campo = {
-	path: "/areas-conocimiento/{id}/campos",
-	valueProp: "id",
-	textProp: "descripcionEsp"
-};
-var disciplina = {
-	path: "/campos/{id}/disciplinas",
-	valueProp: "id",
-	textProp: "descripcionEsp"
-};
-var subdisciplina = {
-	path: "/disciplinas/{id}/subdisciplinas",
-	valueProp: "id",
-	textProp: "descripcionEsp"
-};
-var catalogues = {
-	areaConocimiento: areaConocimiento,
-	campo: campo,
-	disciplina: disciplina,
-	subdisciplina: subdisciplina
-};
+var Level;
+
+(function (Level) {
+  Level[Level["AREA"] = 0] = "AREA";
+  Level[Level["CAMPO"] = 1] = "CAMPO";
+  Level[Level["DISCIPLINA"] = 2] = "DISCIPLINA";
+  Level[Level["SUBDISCIPLINA"] = 3] = "SUBDISCIPLINA";
+  Level[Level["ESPECIALIDAD"] = 4] = "ESPECIALIDAD";
+})(Level || (Level = {}));
 
 var Options =
 /** @class */
 function () {
   function Options(host, context, requiredLevel) {
-    this.requiredLevel = requiredLevel;
     this.host = host || '';
     this.context = context || '/services/catalogos/api';
+    this.requiredLevel = requiredLevel || Level.ESPECIALIDAD;
   }
 
   return Options;
 }();
+
 var defaultConfig = new Options();
-
-var CatalogoComponent =
-/** @class */
-function (_super) {
-  __extends(CatalogoComponent, _super);
-
-  function CatalogoComponent() {
-    var _this = _super !== null && _super.apply(this, arguments) || this;
-
-    _this.options = [];
-    return _this;
-  }
-
-  Object.defineProperty(CatalogoComponent.prototype, "globalOptions", {
-    get: function get() {
-      return this.$CATALOGOS_DEFAULT_OPTIONS || defaultConfig;
-    },
-    enumerable: true,
-    configurable: true
-  });
-
-  CatalogoComponent.prototype.created = function () {
-    // Selecting schema
-    this.schema = catalogues[this.name]; // Build select name
-
-    this.selectName = "catalogo-select-" + this.name; // Build url
-
-    this.url = this.globalOptions.host + this.globalOptions.context + this.schema["path"] + this.queryParameters;
-    this.loadOptions(this.pathVariable, "");
-  };
-
-  CatalogoComponent.prototype.loadOptions = function (newVal, oldVal) {
-    var _this = this;
-
-    var replacedUrl = this.url.replace("{id}", newVal);
-    axios.get(replacedUrl).then(function (res) {
-      _this.options = res.data;
-    });
-  };
-
-  __decorate([Prop({
-    type: String,
-    default: ""
-  })], CatalogoComponent.prototype, "pathVariable", void 0);
-
-  __decorate([Prop({
-    type: String,
-    default: ""
-  })], CatalogoComponent.prototype, "queryParameters", void 0);
-
-  __decorate([Prop(String)], CatalogoComponent.prototype, "label", void 0);
-
-  __decorate([Prop()], CatalogoComponent.prototype, "value", void 0);
-
-  __decorate([Prop({
-    type: String,
-    required: true,
-    validator: function validator(value) {
-      return catalogues[value] !== undefined;
-    }
-  })], CatalogoComponent.prototype, "name", void 0);
-
-  __decorate([Prop({
-    type: String,
-    default: "es"
-  })], CatalogoComponent.prototype, "lang", void 0);
-
-  __decorate([Prop({
-    type: Boolean,
-    default: true
-  })], CatalogoComponent.prototype, "required", void 0);
-
-  __decorate([Watch("pathVariable")], CatalogoComponent.prototype, "loadOptions", null);
-
-  CatalogoComponent = __decorate([Component], CatalogoComponent);
-  return CatalogoComponent;
-}(Vue);
 
 var areaConocimientoHierarchy = [{
   path: "/areas-conocimiento",
   prop: "id",
-  label: "descripcionEsp",
-  selectLabel: "Area de conocimiento: "
+  label: "descripcion",
+  selectLabel: "Area de conocimiento"
 }];
 
 var AreaConocimientoComponent =
@@ -183,81 +91,16 @@ function (_super) {
   return AreaConocimientoComponent;
 }(Vue);
 
-/* script */
-var __vue_script__ = AreaConocimientoComponent;
-/* template */
-
-var __vue_render__ = function __vue_render__() {
-  var _vm = this;
-
-  var _h = _vm.$createElement;
-
-  var _c = _vm._self._c || _h;
-
-  return _c('nested-select', {
-    attrs: {
-      "host": _vm.options.host,
-      "hierarchy": _vm.hierarchyModel,
-      "required": _vm.required
-    },
-    model: {
-      value: _vm.model,
-      callback: function callback($$v) {
-        _vm.model = $$v;
-      },
-      expression: "model"
-    }
-  });
-};
-
-var __vue_staticRenderFns__ = [];
-/* style */
-
-var __vue_inject_styles__ = undefined;
-/* scoped */
-
-var __vue_scope_id__ = undefined;
-/* functional template */
-
-var __vue_is_functional_template__ = false;
-/* component normalizer */
-
-function __vue_normalize__(template, style, script, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
-  var component = (typeof script === 'function' ? script.options : script) || {}; // For security concerns, we use only base name in production mode.
-
-  component.__file = "area-conocimiento.vue";
-
-  if (!component.render) {
-    component.render = template.render;
-    component.staticRenderFns = template.staticRenderFns;
-    component._compiled = true;
-    if (functional) component.functional = true;
-  }
-
-  component._scopeId = scope;
-
-  return component;
-}
-/* style inject */
-
-/* style inject SSR */
-
-
-var AreaConocimientoComponent$1 = __vue_normalize__({
-  render: __vue_render__,
-  staticRenderFns: __vue_staticRenderFns__
-}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__);
-
 var campoHierarchy = [{
   path: "/areas-conocimiento",
   prop: "id",
-  label: "descripcionEsp",
-  selectLabel: "Area de conocimiento: "
+  label: "descripcion",
+  selectLabel: "Area de conocimiento"
 }, {
   path: "/areas-conocimiento/[id]/campos",
   prop: "id",
-  label: "descripcionEsp",
-  selectLabel: "Campo: "
+  label: "descripcion",
+  selectLabel: "Campo"
 }];
 
 var CampoComponent =
@@ -309,166 +152,21 @@ function (_super) {
   return CampoComponent;
 }(Vue);
 
-/* script */
-var __vue_script__$1 = CampoComponent;
-/* template */
-
-var __vue_render__$1 = function __vue_render__() {
-  var _vm = this;
-
-  var _h = _vm.$createElement;
-
-  var _c = _vm._self._c || _h;
-
-  return _c('nested-select', {
-    attrs: {
-      "host": _vm.options.host,
-      "hierarchy": _vm.hierarchyModel,
-      "required": _vm.required
-    },
-    model: {
-      value: _vm.model,
-      callback: function callback($$v) {
-        _vm.model = $$v;
-      },
-      expression: "model"
-    }
-  });
-};
-
-var __vue_staticRenderFns__$1 = [];
-/* style */
-
-var __vue_inject_styles__$1 = undefined;
-/* scoped */
-
-var __vue_scope_id__$1 = undefined;
-/* functional template */
-
-var __vue_is_functional_template__$1 = false;
-/* component normalizer */
-
-function __vue_normalize__$1(template, style, script, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
-  var component = (typeof script === 'function' ? script.options : script) || {}; // For security concerns, we use only base name in production mode.
-
-  component.__file = "campo.vue";
-
-  if (!component.render) {
-    component.render = template.render;
-    component.staticRenderFns = template.staticRenderFns;
-    component._compiled = true;
-    if (functional) component.functional = true;
-  }
-
-  component._scopeId = scope;
-
-  return component;
-}
-/* style inject */
-
-/* style inject SSR */
-
-
-var CampoComponent$1 = __vue_normalize__$1({
-  render: __vue_render__$1,
-  staticRenderFns: __vue_staticRenderFns__$1
-}, __vue_inject_styles__$1, __vue_script__$1, __vue_scope_id__$1, __vue_is_functional_template__$1);
-
-/* script */
-var __vue_script__$2 = CatalogoComponent;
-/* template */
-
-var __vue_render__$2 = function __vue_render__() {
-  var _vm = this;
-
-  var _h = _vm.$createElement;
-
-  var _c = _vm._self._c || _h;
-
-  return _c('div', [_vm.label ? _c('label', {
-    attrs: {
-      "for": _vm.selectName
-    }
-  }, [_vm._v(_vm._s(_vm.label))]) : _vm._e(), _vm._v(" "), _c('select', {
-    staticClass: "form-control",
-    attrs: {
-      "name": _vm.selectName,
-      "id": _vm.selectName,
-      "required": _vm.required
-    },
-    on: {
-      "input": function input($event) {
-        return _vm.$emit('input', _vm.options[$event.target.selectedIndex - 1]);
-      }
-    }
-  }, [_c('option', {
-    attrs: {
-      "value": ""
-    }
-  }), _vm._v(" "), _vm._l(_vm.options, function (option, optionIndex) {
-    return _c('option', {
-      key: optionIndex,
-      domProps: {
-        "value": option[_vm.schema.valueProp],
-        "selected": _vm.value && option[_vm.schema.valueProp] === _vm.value[_vm.schema.valueProp]
-      }
-    }, [_vm._v(_vm._s(option[_vm.schema.textProp]))]);
-  })], 2)]);
-};
-
-var __vue_staticRenderFns__$2 = [];
-/* style */
-
-var __vue_inject_styles__$2 = undefined;
-/* scoped */
-
-var __vue_scope_id__$2 = undefined;
-/* functional template */
-
-var __vue_is_functional_template__$2 = false;
-/* component normalizer */
-
-function __vue_normalize__$2(template, style, script, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
-  var component = (typeof script === 'function' ? script.options : script) || {}; // For security concerns, we use only base name in production mode.
-
-  component.__file = "CatalogoComponent.vue";
-
-  if (!component.render) {
-    component.render = template.render;
-    component.staticRenderFns = template.staticRenderFns;
-    component._compiled = true;
-    if (functional) component.functional = true;
-  }
-
-  component._scopeId = scope;
-
-  return component;
-}
-/* style inject */
-
-/* style inject SSR */
-
-
-var CatalogoComponent$1 = __vue_normalize__$2({
-  render: __vue_render__$2,
-  staticRenderFns: __vue_staticRenderFns__$2
-}, __vue_inject_styles__$2, __vue_script__$2, __vue_scope_id__$2, __vue_is_functional_template__$2);
-
 var disciplinaHierachy = [{
   path: "/areas-conocimiento",
   prop: "id",
-  label: "descripcionEsp",
-  selectLabel: "Area de conocimiento: "
+  label: "descripcion",
+  selectLabel: "Area de conocimiento"
 }, {
   path: "/areas-conocimiento/[id]/campos",
   prop: "id",
-  label: "descripcionEsp",
-  selectLabel: "Campo: "
+  label: "descripcion",
+  selectLabel: "Campo"
 }, {
   path: "/campos/[id]/disciplinas",
   prop: "id",
-  label: "descripcionEsp",
-  selectLabel: "Disciplinas: "
+  label: "descripcion",
+  selectLabel: "Disciplinas"
 }];
 
 var DisciplinaComponent =
@@ -520,91 +218,91 @@ function (_super) {
   return DisciplinaComponent;
 }(Vue);
 
-/* script */
-var __vue_script__$3 = DisciplinaComponent;
-/* template */
-
-var __vue_render__$3 = function __vue_render__() {
-  var _vm = this;
-
-  var _h = _vm.$createElement;
-
-  var _c = _vm._self._c || _h;
-
-  return _c('nested-select', {
-    attrs: {
-      "host": _vm.options.host,
-      "hierarchy": _vm.hierarchyModel,
-      "required": _vm.required
-    },
-    model: {
-      value: _vm.model,
-      callback: function callback($$v) {
-        _vm.model = $$v;
-      },
-      expression: "model"
-    }
-  });
+var areaConocimientoCrud = {
+	title: "Knowledge areas",
+	add: "Add",
+	area: "Area",
+	campo: "Field",
+	disciplina: "Discipline",
+	subdisciplina: "Subdiscipline",
+	especialidad: "Speciality",
+	addTitle: "Add knowledge area",
+	cancel: "Cancel",
+	confirm: {
+		title: "Confirm delete operation",
+		"delete": "Are you sure you want to delete this knowledge area?"
+	},
+	"delete": "Delete",
+	validation: {
+		required: "This field is required"
+	}
+};
+var i18nEn = {
+	areaConocimientoCrud: areaConocimientoCrud
 };
 
-var __vue_staticRenderFns__$3 = [];
-/* style */
+var areaConocimientoCrud$1 = {
+	title: "Áreas de conocimiento",
+	add: "Agregar",
+	area: "Área",
+	campo: "Campo",
+	disciplina: "Disciplina",
+	subdisciplina: "Subdisciplina",
+	especialidad: "Especialidad",
+	addTitle: "Agregar área de conocimiento",
+	cancel: "Cancelar",
+	confirm: {
+		title: "Confirmar operación de borrado",
+		"delete": "¿Está seguro que quiere borrar esta Área de Conocimiento?"
+	},
+	"delete": "Eliminar",
+	validation: {
+		required: "Este campo es requerido"
+	}
+};
+var i18nEs = {
+	areaConocimientoCrud: areaConocimientoCrud$1
+};
 
-var __vue_inject_styles__$3 = undefined;
-/* scoped */
-
-var __vue_scope_id__$3 = undefined;
-/* functional template */
-
-var __vue_is_functional_template__$3 = false;
-/* component normalizer */
-
-function __vue_normalize__$3(template, style, script, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
-  var component = (typeof script === 'function' ? script.options : script) || {}; // For security concerns, we use only base name in production mode.
-
-  component.__file = "disciplina.vue";
-
-  if (!component.render) {
-    component.render = template.render;
-    component.staticRenderFns = template.staticRenderFns;
-    component._compiled = true;
-    if (functional) component.functional = true;
+var AreaDeConocimiento =
+/** @class */
+function () {
+  function AreaDeConocimiento(id, idArea, area, idCampo, campo, idDisciplina, disciplina, idSubdisciplina, subdisciplina, especialidad) {
+    this.id = id;
+    this.idArea = idArea;
+    this.area = area;
+    this.idCampo = idCampo;
+    this.campo = campo;
+    this.idDisciplina = idDisciplina;
+    this.disciplina = disciplina;
+    this.idSubdisciplina = idSubdisciplina;
+    this.subdisciplina = subdisciplina;
+    this.especialidad = especialidad;
   }
 
-  component._scopeId = scope;
-
-  return component;
-}
-/* style inject */
-
-/* style inject SSR */
-
-
-var DisciplinaComponent$1 = __vue_normalize__$3({
-  render: __vue_render__$3,
-  staticRenderFns: __vue_staticRenderFns__$3
-}, __vue_inject_styles__$3, __vue_script__$3, __vue_scope_id__$3, __vue_is_functional_template__$3);
+  return AreaDeConocimiento;
+}();
 
 var subdisciplinaHierachy = [{
   path: "/areas-conocimiento",
   prop: "id",
-  label: "descripcionEsp",
-  selectLabel: "Area de conocimiento: "
+  label: "descripcion",
+  selectLabel: "Area de conocimiento"
 }, {
   path: "/areas-conocimiento/[id]/campos",
   prop: "id",
-  label: "descripcionEsp",
-  selectLabel: "Campo: "
+  label: "descripcion",
+  selectLabel: "Campo"
 }, {
   path: "/campos/[id]/disciplinas",
   prop: "id",
-  label: "descripcionEsp",
-  selectLabel: "Disciplina: "
+  label: "descripcion",
+  selectLabel: "Disciplina"
 }, {
   path: "/disciplinas/[id]/subdisciplinas",
   prop: "id",
-  label: "descripcionEsp",
-  selectLabel: "Subdisciplina: "
+  label: "descripcion",
+  selectLabel: "Subdisciplina"
 }];
 
 var SubdisciplinaComponent =
@@ -656,91 +354,17 @@ function (_super) {
   return SubdisciplinaComponent;
 }(Vue);
 
-/* script */
-var __vue_script__$4 = SubdisciplinaComponent;
-/* template */
-
-var __vue_render__$4 = function __vue_render__() {
-  var _vm = this;
-
-  var _h = _vm.$createElement;
-
-  var _c = _vm._self._c || _h;
-
-  return _c('nested-select', {
-    attrs: {
-      "host": _vm.options.host,
-      "hierarchy": _vm.hierarchyModel,
-      "required": _vm.required
-    },
-    model: {
-      value: _vm.model,
-      callback: function callback($$v) {
-        _vm.model = $$v;
-      },
-      expression: "model"
-    }
-  });
-};
-
-var __vue_staticRenderFns__$4 = [];
-/* style */
-
-var __vue_inject_styles__$4 = undefined;
-/* scoped */
-
-var __vue_scope_id__$4 = undefined;
-/* functional template */
-
-var __vue_is_functional_template__$4 = false;
-/* component normalizer */
-
-function __vue_normalize__$4(template, style, script, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
-  var component = (typeof script === 'function' ? script.options : script) || {}; // For security concerns, we use only base name in production mode.
-
-  component.__file = "subdisciplina.vue";
-
-  if (!component.render) {
-    component.render = template.render;
-    component.staticRenderFns = template.staticRenderFns;
-    component._compiled = true;
-    if (functional) component.functional = true;
-  }
-
-  component._scopeId = scope;
-
-  return component;
-}
-/* style inject */
-
-/* style inject SSR */
-
-
-var SubdisciplinaComponent$1 = __vue_normalize__$4({
-  render: __vue_render__$4,
-  staticRenderFns: __vue_staticRenderFns__$4
-}, __vue_inject_styles__$4, __vue_script__$4, __vue_scope_id__$4, __vue_is_functional_template__$4);
-
-var AreaDeConocimiento =
-/** @class */
-function () {
-  function AreaDeConocimiento(id, idArea, area, idCampo, campo, idDisciplina, disciplina, idSubdisciplina, subdisciplina, especialidad) {
-    this.id = id;
-    this.idArea = idArea;
-    this.area = area;
-    this.idCampo = idCampo;
-    this.campo = campo;
-    this.idDisciplina = idDisciplina;
-    this.disciplina = disciplina;
-    this.idSubdisciplina = idSubdisciplina;
-    this.subdisciplina = subdisciplina;
-    this.especialidad = especialidad;
-  }
-
-  return AreaDeConocimiento;
-}();
-
 library.add(faTimes);
+var areaConocimientoCrudValidations = {
+  model: {
+    required: required
+  },
+  especialidad: {
+    required: requiredIf(function (model) {
+      return model.options.requiredLevel === Level.ESPECIALIDAD;
+    })
+  }
+};
 
 var AreaConocimientoCrudComponent =
 /** @class */
@@ -750,33 +374,17 @@ function (_super) {
   function AreaConocimientoCrudComponent() {
     var _this = _super !== null && _super.apply(this, arguments) || this;
 
+    _this.Level = Level;
     _this.model = {};
     _this.fullModel = new Array(); //Updated when 'complete' event
 
+    _this.especialidad = '';
     return _this;
   }
 
   AreaConocimientoCrudComponent.prototype.created = function () {
-    switch (this.options.requiredLevel) {
-      case 'area':
-        this.hierarchyModel = areaConocimientoHierarchy;
-        break;
-
-      case 'campo':
-        this.hierarchyModel = campoHierarchy;
-        break;
-
-      case 'disciplina':
-        this.hierarchyModel = disciplinaHierachy;
-        break;
-
-      case 'subdisciplina':
-        this.hierarchyModel = subdisciplinaHierachy;
-        break;
-
-      default:
-        break;
-    }
+    this.initHierarchyModel();
+    this.initI18n();
   };
 
   Object.defineProperty(AreaConocimientoCrudComponent.prototype, "options", {
@@ -822,6 +430,10 @@ function (_super) {
       value.area = maybeArea.descripcionEsp;
     }
 
+    if (this.especialidad) {
+      value.especialidad = this.especialidad;
+    }
+
     return value;
   };
 
@@ -843,6 +455,37 @@ function (_super) {
     this.$refs.removeAreaConocimiento.hide();
   };
 
+  AreaConocimientoCrudComponent.prototype.initHierarchyModel = function () {
+    switch (this.options.requiredLevel) {
+      case Level.AREA:
+        this.hierarchyModel = areaConocimientoHierarchy;
+        break;
+
+      case Level.CAMPO:
+        this.hierarchyModel = campoHierarchy;
+        break;
+
+      case Level.DISCIPLINA:
+        this.hierarchyModel = disciplinaHierachy;
+        break;
+
+      case Level.SUBDISCIPLINA:
+      case Level.ESPECIALIDAD:
+        this.hierarchyModel = subdisciplinaHierachy;
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  AreaConocimientoCrudComponent.prototype.initI18n = function () {
+    if (this.$i18n) {
+      this.$i18n.mergeLocaleMessage('es', i18nEs);
+      this.$i18n.mergeLocaleMessage('en', i18nEn);
+    }
+  };
+
   __decorate([Prop({
     required: true,
     type: Array
@@ -857,16 +500,17 @@ function (_super) {
     },
     directives: {
       'b-modal': bModalDirective
-    }
+    },
+    validations: areaConocimientoCrudValidations
   })], AreaConocimientoCrudComponent);
   return AreaConocimientoCrudComponent;
 }(Vue);
 
 /* script */
-var __vue_script__$5 = AreaConocimientoCrudComponent;
+var __vue_script__ = AreaConocimientoCrudComponent;
 /* template */
 
-var __vue_render__$5 = function __vue_render__() {
+var __vue_render__ = function __vue_render__() {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -892,14 +536,68 @@ var __vue_render__$5 = function __vue_render__() {
       }
     }],
     staticClass: "btn btn-primary"
-  }, [_vm._v("Agregar")])]), _vm._v(" "), _c('div', {
+  }, [_c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.add'))
+    }
+  }, [_vm._v("Agregar")])])]), _vm._v(" "), _c('div', {
     staticClass: "table-responsive"
   }, [_c('table', {
     staticClass: "table table-striped"
-  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('tbody', _vm._l(_vm.value, function (e, i) {
+  }, [_c('caption', {
+    staticClass: "text-center"
+  }, [_c('h5', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.title'))
+    }
+  }, [_vm._v("Áreas de conocimiento")])]), _vm._v(" "), _c('thead', [_vm.options.requiredLevel >= _vm.Level.AREA ? _c('th', {
+    attrs: {
+      "scope": "col"
+    }
+  }, [_c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.area'))
+    }
+  }, [_vm._v("Área")])]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel >= _vm.Level.CAMPO ? _c('th', {
+    attrs: {
+      "scope": "col"
+    }
+  }, [_c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.campo'))
+    }
+  }, [_vm._v("Campo")])]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel >= _vm.Level.DISCIPLINA ? _c('th', {
+    attrs: {
+      "scope": "col"
+    }
+  }, [_c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.disciplina'))
+    }
+  }, [_vm._v("Disciplina")])]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel >= _vm.Level.SUBDISCIPLINA ? _c('th', {
+    attrs: {
+      "scope": "col"
+    }
+  }, [_c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.subdisciplina'))
+    }
+  }, [_vm._v("Subdisciplina")])]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel >= _vm.Level.ESPECIALIDAD ? _c('th', {
+    attrs: {
+      "scope": "col"
+    }
+  }, [_c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.especialidad'))
+    }
+  }, [_vm._v("Especialidad")])]) : _vm._e(), _vm._v(" "), _c('th', {
+    attrs: {
+      "scope": "col"
+    }
+  })]), _vm._v(" "), _c('tbody', _vm._l(_vm.value, function (e, i) {
     return _c('tr', {
       key: i
-    }, [_c('td', [_vm._v(_vm._s(e.area))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(e.campo))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(e.disciplina))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(e.subdisciplina))]), _vm._v(" "), _c('td', {
+    }, [_vm.options.requiredLevel >= _vm.Level.AREA ? _c('td', [_vm._v(_vm._s(e.area))]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel >= _vm.Level.CAMPO ? _c('td', [_vm._v(_vm._s(e.campo))]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel >= _vm.Level.DISCIPLINA ? _c('td', [_vm._v(_vm._s(e.disciplina))]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel >= _vm.Level.SUBDISCIPLINA ? _c('td', [_vm._v(_vm._s(e.subdisciplina))]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel >= _vm.Level.ESPECIALIDAD ? _c('td', [_vm._v(_vm._s(e.especialidad))]) : _vm._e(), _vm._v(" "), _c('td', {
       staticClass: "text-right"
     }, [_c('div', {
       staticClass: "btn-group flex-btn-group-container"
@@ -927,10 +625,23 @@ var __vue_render__$5 = function __vue_render__() {
     attrs: {
       "slot": "modal-title"
     },
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.addTitle'))
+    },
     slot: "modal-title"
   }, [_vm._v("Agregar área de conocimiento")]), _vm._v(" "), _c('div', {
     staticClass: "modal-body"
-  }, [_c('nested-select', {
+  }, [_c('form', {
+    attrs: {
+      "name": "addAreaConocimientoForm",
+      "role": "form"
+    },
+    on: {
+      "submit": function submit($event) {
+        $event.preventDefault();
+      }
+    }
+  }, [_c('div', [_c('nested-select', {
     attrs: {
       "host": _vm.options.host,
       "hierarchy": _vm.hierarchyModel,
@@ -948,7 +659,57 @@ var __vue_render__$5 = function __vue_render__() {
       },
       expression: "model"
     }
-  })], 1), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _vm.$v.model.$invalid ? _c('div', [!_vm.$v.model.required ? _c('small', {
+    staticClass: "form-text text-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.validation.required'))
+    }
+  }, [_vm._v("Este campo es requerido")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel === _vm.Level.ESPECIALIDAD ? _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "especialidad"
+    },
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.especialidad'))
+    }
+  }, [_vm._v("Especialidad")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.especialidad,
+      expression: "especialidad",
+      modifiers: {
+        "trim": true
+      }
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "especialidad",
+      "name": "especialidad"
+    },
+    domProps: {
+      "value": _vm.especialidad
+    },
+    on: {
+      "input": function input($event) {
+        if ($event.target.composing) {
+          return;
+        }
+
+        _vm.especialidad = $event.target.value.trim();
+      },
+      "blur": function blur($event) {
+        return _vm.$forceUpdate();
+      }
+    }
+  }), _vm._v(" "), _vm.$v.especialidad.$invalid ? _c('div', [!_vm.$v.especialidad.required ? _c('small', {
+    staticClass: "form-text text-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.validation.required'))
+    }
+  }, [_vm._v("Este campo es requerido")]) : _vm._e()]) : _vm._e()]) : _vm._e()], 1)])]), _vm._v(" "), _c('div', {
     attrs: {
       "slot": "modal-footer"
     },
@@ -964,18 +725,27 @@ var __vue_render__$5 = function __vue_render__() {
         return _vm.closeDialog();
       }
     }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('button', {
+  }, [_c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.cancel'))
+    }
+  }, [_vm._v("Cancel")])]), _vm._v(" "), _c('button', {
     staticClass: "btn btn-primary",
     attrs: {
       "type": "button",
-      "id": "confirm-add-area-conocimiento"
+      "id": "confirm-add-area-conocimiento",
+      "disabled": _vm.$v.model.$invalid || _vm.$v.especialidad.$invalid
     },
     on: {
       "click": function click($event) {
         return _vm.add();
       }
     }
-  }, [_vm._v("Agregar")])])]), _vm._v(" "), _c('b-modal', {
+  }, [_c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.add'))
+    }
+  }, [_vm._v("Agregar")])])])]), _vm._v(" "), _c('b-modal', {
     ref: "removeAreaConocimiento",
     attrs: {
       "id": "removeAreaConocimiento"
@@ -988,12 +758,18 @@ var __vue_render__$5 = function __vue_render__() {
   }, [_c('span', {
     attrs: {
       "id": "catalogos.areaConocimiento.delete.question"
+    },
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.confirm.title'))
     }
   }, [_vm._v("Confirmar operación de borrado")])]), _vm._v(" "), _c('div', {
     staticClass: "modal-body"
   }, [_c('p', {
     attrs: {
       "id": "catalogos-delete-area-conocimiento-heading"
+    },
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.confirm.delete'))
     }
   }, [_vm._v("¿Está seguro que quiere borrar esta Área de Conocimiento?")])]), _vm._v(" "), _c('div', {
     attrs: {
@@ -1010,7 +786,11 @@ var __vue_render__$5 = function __vue_render__() {
         return _vm.closeConfirmationDialog();
       }
     }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('button', {
+  }, [_c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.cancel'))
+    }
+  }, [_vm._v("Cancel")])]), _vm._v(" "), _c('button', {
     staticClass: "btn btn-primary",
     attrs: {
       "type": "button",
@@ -1021,54 +801,20 @@ var __vue_render__$5 = function __vue_render__() {
         return _vm.removeAreaConocimiento();
       }
     }
-  }, [_vm._v("Delete")])])])], 1);
+  }, [_c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.delete'))
+    }
+  }, [_vm._v("Delete")])])])])], 1);
 };
 
-var __vue_staticRenderFns__$5 = [function () {
-  var _vm = this;
-
-  var _h = _vm.$createElement;
-
-  var _c = _vm._self._c || _h;
-
-  return _c('caption', {
-    staticClass: "text-center"
-  }, [_c('h5', [_vm._v("Áreas de conocimiento")])]);
-}, function () {
-  var _vm = this;
-
-  var _h = _vm.$createElement;
-
-  var _c = _vm._self._c || _h;
-
-  return _c('thead', [_c('th', {
-    attrs: {
-      "scope": "col"
-    }
-  }, [_vm._v("Área")]), _vm._v(" "), _c('th', {
-    attrs: {
-      "scope": "col"
-    }
-  }, [_vm._v("Campo")]), _vm._v(" "), _c('th', {
-    attrs: {
-      "scope": "col"
-    }
-  }, [_vm._v("Disciplina")]), _vm._v(" "), _c('th', {
-    attrs: {
-      "scope": "col"
-    }
-  }, [_vm._v("Subdisciplina")]), _vm._v(" "), _c('th', {
-    attrs: {
-      "scope": "col"
-    }
-  })]);
-}];
+var __vue_staticRenderFns__ = [];
 /* style */
 
-var __vue_inject_styles__$5 = function __vue_inject_styles__(inject) {
+var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-a24d9bce_0", {
-    source: "caption[data-v-a24d9bce]{caption-side:top}",
+  inject("data-v-33feb0d0_0", {
+    source: "caption[data-v-33feb0d0]{caption-side:top}",
     map: undefined,
     media: undefined
   });
@@ -1076,16 +822,16 @@ var __vue_inject_styles__$5 = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__$5 = "data-v-a24d9bce";
+var __vue_scope_id__ = "data-v-33feb0d0";
 /* module identifier */
 
 var __vue_module_identifier__ = undefined;
 /* functional template */
 
-var __vue_is_functional_template__$5 = false;
+var __vue_is_functional_template__ = false;
 /* component normalizer */
 
-function __vue_normalize__$5(template, style, script, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
+function __vue_normalize__(template, style, script, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
   var component = (typeof script === 'function' ? script.options : script) || {}; // For security concerns, we use only base name in production mode.
 
   component.__file = "area-conocimiento-crud.vue";
@@ -1194,10 +940,454 @@ function __vue_create_injector__() {
 /* style inject SSR */
 
 
-var AreaConocimientoCrudComponent$1 = __vue_normalize__$5({
+var AreaConocimientoCrudComponent$1 = __vue_normalize__({
+  render: __vue_render__,
+  staticRenderFns: __vue_staticRenderFns__
+}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, __vue_create_injector__);
+
+/* script */
+var __vue_script__$1 = AreaConocimientoComponent;
+/* template */
+
+var __vue_render__$1 = function __vue_render__() {
+  var _vm = this;
+
+  var _h = _vm.$createElement;
+
+  var _c = _vm._self._c || _h;
+
+  return _c('nested-select', {
+    attrs: {
+      "host": _vm.options.host,
+      "hierarchy": _vm.hierarchyModel,
+      "required": _vm.required
+    },
+    model: {
+      value: _vm.model,
+      callback: function callback($$v) {
+        _vm.model = $$v;
+      },
+      expression: "model"
+    }
+  });
+};
+
+var __vue_staticRenderFns__$1 = [];
+/* style */
+
+var __vue_inject_styles__$1 = undefined;
+/* scoped */
+
+var __vue_scope_id__$1 = undefined;
+/* functional template */
+
+var __vue_is_functional_template__$1 = false;
+/* component normalizer */
+
+function __vue_normalize__$1(template, style, script, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
+  var component = (typeof script === 'function' ? script.options : script) || {}; // For security concerns, we use only base name in production mode.
+
+  component.__file = "area-conocimiento.vue";
+
+  if (!component.render) {
+    component.render = template.render;
+    component.staticRenderFns = template.staticRenderFns;
+    component._compiled = true;
+    if (functional) component.functional = true;
+  }
+
+  component._scopeId = scope;
+
+  return component;
+}
+/* style inject */
+
+/* style inject SSR */
+
+
+var AreaConocimientoComponent$1 = __vue_normalize__$1({
+  render: __vue_render__$1,
+  staticRenderFns: __vue_staticRenderFns__$1
+}, __vue_inject_styles__$1, __vue_script__$1, __vue_scope_id__$1, __vue_is_functional_template__$1);
+
+/* script */
+var __vue_script__$2 = CampoComponent;
+/* template */
+
+var __vue_render__$2 = function __vue_render__() {
+  var _vm = this;
+
+  var _h = _vm.$createElement;
+
+  var _c = _vm._self._c || _h;
+
+  return _c('nested-select', {
+    attrs: {
+      "host": _vm.options.host,
+      "hierarchy": _vm.hierarchyModel,
+      "required": _vm.required
+    },
+    model: {
+      value: _vm.model,
+      callback: function callback($$v) {
+        _vm.model = $$v;
+      },
+      expression: "model"
+    }
+  });
+};
+
+var __vue_staticRenderFns__$2 = [];
+/* style */
+
+var __vue_inject_styles__$2 = undefined;
+/* scoped */
+
+var __vue_scope_id__$2 = undefined;
+/* functional template */
+
+var __vue_is_functional_template__$2 = false;
+/* component normalizer */
+
+function __vue_normalize__$2(template, style, script, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
+  var component = (typeof script === 'function' ? script.options : script) || {}; // For security concerns, we use only base name in production mode.
+
+  component.__file = "campo.vue";
+
+  if (!component.render) {
+    component.render = template.render;
+    component.staticRenderFns = template.staticRenderFns;
+    component._compiled = true;
+    if (functional) component.functional = true;
+  }
+
+  component._scopeId = scope;
+
+  return component;
+}
+/* style inject */
+
+/* style inject SSR */
+
+
+var CampoComponent$1 = __vue_normalize__$2({
+  render: __vue_render__$2,
+  staticRenderFns: __vue_staticRenderFns__$2
+}, __vue_inject_styles__$2, __vue_script__$2, __vue_scope_id__$2, __vue_is_functional_template__$2);
+
+var areaConocimiento = {
+	path: "/areas-conocimiento",
+	valueProp: "id",
+	textProp: "descripcionEsp"
+};
+var campo = {
+	path: "/areas-conocimiento/{id}/campos",
+	valueProp: "id",
+	textProp: "descripcionEsp"
+};
+var disciplina = {
+	path: "/campos/{id}/disciplinas",
+	valueProp: "id",
+	textProp: "descripcionEsp"
+};
+var subdisciplina = {
+	path: "/disciplinas/{id}/subdisciplinas",
+	valueProp: "id",
+	textProp: "descripcionEsp"
+};
+var catalogues = {
+	areaConocimiento: areaConocimiento,
+	campo: campo,
+	disciplina: disciplina,
+	subdisciplina: subdisciplina
+};
+
+var CatalogoComponent =
+/** @class */
+function (_super) {
+  __extends(CatalogoComponent, _super);
+
+  function CatalogoComponent() {
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this.options = [];
+    return _this;
+  }
+
+  Object.defineProperty(CatalogoComponent.prototype, "globalOptions", {
+    get: function get() {
+      return this.$CATALOGOS_DEFAULT_OPTIONS || defaultConfig;
+    },
+    enumerable: true,
+    configurable: true
+  });
+
+  CatalogoComponent.prototype.created = function () {
+    // Selecting schema
+    this.schema = catalogues[this.name]; // Build select name
+
+    this.selectName = "catalogo-select-" + this.name; // Build url
+
+    this.url = this.globalOptions.host + this.globalOptions.context + this.schema["path"] + this.queryParameters;
+    this.loadOptions(this.pathVariable, "");
+  };
+
+  CatalogoComponent.prototype.loadOptions = function (newVal, oldVal) {
+    var _this = this;
+
+    var replacedUrl = this.url.replace("{id}", newVal);
+    axios.get(replacedUrl).then(function (res) {
+      _this.options = res.data;
+    });
+  };
+
+  __decorate([Prop({
+    type: String,
+    default: ""
+  })], CatalogoComponent.prototype, "pathVariable", void 0);
+
+  __decorate([Prop({
+    type: String,
+    default: ""
+  })], CatalogoComponent.prototype, "queryParameters", void 0);
+
+  __decorate([Prop(String)], CatalogoComponent.prototype, "label", void 0);
+
+  __decorate([Prop()], CatalogoComponent.prototype, "value", void 0);
+
+  __decorate([Prop({
+    type: String,
+    required: true,
+    validator: function validator(value) {
+      return catalogues[value] !== undefined;
+    }
+  })], CatalogoComponent.prototype, "name", void 0);
+
+  __decorate([Prop({
+    type: String,
+    default: "es"
+  })], CatalogoComponent.prototype, "lang", void 0);
+
+  __decorate([Prop({
+    type: Boolean,
+    default: true
+  })], CatalogoComponent.prototype, "required", void 0);
+
+  __decorate([Watch("pathVariable")], CatalogoComponent.prototype, "loadOptions", null);
+
+  CatalogoComponent = __decorate([Component], CatalogoComponent);
+  return CatalogoComponent;
+}(Vue);
+
+/* script */
+var __vue_script__$3 = CatalogoComponent;
+/* template */
+
+var __vue_render__$3 = function __vue_render__() {
+  var _vm = this;
+
+  var _h = _vm.$createElement;
+
+  var _c = _vm._self._c || _h;
+
+  return _c('div', [_vm.label ? _c('label', {
+    attrs: {
+      "for": _vm.selectName
+    }
+  }, [_vm._v(_vm._s(_vm.label))]) : _vm._e(), _vm._v(" "), _c('select', {
+    staticClass: "form-control",
+    attrs: {
+      "name": _vm.selectName,
+      "id": _vm.selectName,
+      "required": _vm.required
+    },
+    on: {
+      "input": function input($event) {
+        return _vm.$emit('input', _vm.options[$event.target.selectedIndex - 1]);
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": ""
+    }
+  }), _vm._v(" "), _vm._l(_vm.options, function (option, optionIndex) {
+    return _c('option', {
+      key: optionIndex,
+      domProps: {
+        "value": option[_vm.schema.valueProp],
+        "selected": _vm.value && option[_vm.schema.valueProp] === _vm.value[_vm.schema.valueProp]
+      }
+    }, [_vm._v(_vm._s(option[_vm.schema.textProp]))]);
+  })], 2)]);
+};
+
+var __vue_staticRenderFns__$3 = [];
+/* style */
+
+var __vue_inject_styles__$3 = undefined;
+/* scoped */
+
+var __vue_scope_id__$3 = undefined;
+/* functional template */
+
+var __vue_is_functional_template__$3 = false;
+/* component normalizer */
+
+function __vue_normalize__$3(template, style, script, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
+  var component = (typeof script === 'function' ? script.options : script) || {}; // For security concerns, we use only base name in production mode.
+
+  component.__file = "CatalogoComponent.vue";
+
+  if (!component.render) {
+    component.render = template.render;
+    component.staticRenderFns = template.staticRenderFns;
+    component._compiled = true;
+    if (functional) component.functional = true;
+  }
+
+  component._scopeId = scope;
+
+  return component;
+}
+/* style inject */
+
+/* style inject SSR */
+
+
+var CatalogoComponent$1 = __vue_normalize__$3({
+  render: __vue_render__$3,
+  staticRenderFns: __vue_staticRenderFns__$3
+}, __vue_inject_styles__$3, __vue_script__$3, __vue_scope_id__$3, __vue_is_functional_template__$3);
+
+/* script */
+var __vue_script__$4 = DisciplinaComponent;
+/* template */
+
+var __vue_render__$4 = function __vue_render__() {
+  var _vm = this;
+
+  var _h = _vm.$createElement;
+
+  var _c = _vm._self._c || _h;
+
+  return _c('nested-select', {
+    attrs: {
+      "host": _vm.options.host,
+      "hierarchy": _vm.hierarchyModel,
+      "required": _vm.required
+    },
+    model: {
+      value: _vm.model,
+      callback: function callback($$v) {
+        _vm.model = $$v;
+      },
+      expression: "model"
+    }
+  });
+};
+
+var __vue_staticRenderFns__$4 = [];
+/* style */
+
+var __vue_inject_styles__$4 = undefined;
+/* scoped */
+
+var __vue_scope_id__$4 = undefined;
+/* functional template */
+
+var __vue_is_functional_template__$4 = false;
+/* component normalizer */
+
+function __vue_normalize__$4(template, style, script, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
+  var component = (typeof script === 'function' ? script.options : script) || {}; // For security concerns, we use only base name in production mode.
+
+  component.__file = "disciplina.vue";
+
+  if (!component.render) {
+    component.render = template.render;
+    component.staticRenderFns = template.staticRenderFns;
+    component._compiled = true;
+    if (functional) component.functional = true;
+  }
+
+  component._scopeId = scope;
+
+  return component;
+}
+/* style inject */
+
+/* style inject SSR */
+
+
+var DisciplinaComponent$1 = __vue_normalize__$4({
+  render: __vue_render__$4,
+  staticRenderFns: __vue_staticRenderFns__$4
+}, __vue_inject_styles__$4, __vue_script__$4, __vue_scope_id__$4, __vue_is_functional_template__$4);
+
+/* script */
+var __vue_script__$5 = SubdisciplinaComponent;
+/* template */
+
+var __vue_render__$5 = function __vue_render__() {
+  var _vm = this;
+
+  var _h = _vm.$createElement;
+
+  var _c = _vm._self._c || _h;
+
+  return _c('nested-select', {
+    attrs: {
+      "host": _vm.options.host,
+      "hierarchy": _vm.hierarchyModel,
+      "required": _vm.required
+    },
+    model: {
+      value: _vm.model,
+      callback: function callback($$v) {
+        _vm.model = $$v;
+      },
+      expression: "model"
+    }
+  });
+};
+
+var __vue_staticRenderFns__$5 = [];
+/* style */
+
+var __vue_inject_styles__$5 = undefined;
+/* scoped */
+
+var __vue_scope_id__$5 = undefined;
+/* functional template */
+
+var __vue_is_functional_template__$5 = false;
+/* component normalizer */
+
+function __vue_normalize__$5(template, style, script, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
+  var component = (typeof script === 'function' ? script.options : script) || {}; // For security concerns, we use only base name in production mode.
+
+  component.__file = "subdisciplina.vue";
+
+  if (!component.render) {
+    component.render = template.render;
+    component.staticRenderFns = template.staticRenderFns;
+    component._compiled = true;
+    if (functional) component.functional = true;
+  }
+
+  component._scopeId = scope;
+
+  return component;
+}
+/* style inject */
+
+/* style inject SSR */
+
+
+var SubdisciplinaComponent$1 = __vue_normalize__$5({
   render: __vue_render__$5,
   staticRenderFns: __vue_staticRenderFns__$5
-}, __vue_inject_styles__$5, __vue_script__$5, __vue_scope_id__$5, __vue_is_functional_template__$5, __vue_module_identifier__, __vue_create_injector__);
+}, __vue_inject_styles__$5, __vue_script__$5, __vue_scope_id__$5, __vue_is_functional_template__$5);
 
 var index = {
   install: function install(Vue, globalOptions) {

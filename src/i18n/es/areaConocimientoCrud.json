@@ -13,6 +13,9 @@
             "title": "Confirmar operación de borrado",
             "delete": "¿Está seguro que quiere borrar esta Área de Conocimiento?"
         },
-        "delete": "Eliminar"
+        "delete": "Eliminar",
+        "validation": {
+            "required": "Este campo es requerido"
+        }
     }
 }

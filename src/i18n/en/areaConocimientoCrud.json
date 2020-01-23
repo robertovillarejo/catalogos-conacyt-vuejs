@@ -13,6 +13,9 @@
             "title": "Confirm delete operation",
             "delete": "Are you sure you want to delete this knowledge area?"
         },
-        "delete": "Delete"
+        "delete": "Delete",
+        "validation": {
+            "required": "This field is required"
+        }
     }
 }

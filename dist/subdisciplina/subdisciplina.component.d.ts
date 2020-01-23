@@ -1,6 +1,6 @@
-import { Options } from '@/catalogo.component';
+import { Options } from '@/model/options.model';
 import { Vue } from "vue-property-decorator";
-declare const subdisciplinaHierachy: {
+declare let subdisciplinaHierachy: {
     path: string;
     prop: string;
     label: string;

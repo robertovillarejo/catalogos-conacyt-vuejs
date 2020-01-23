@@ -1,6 +1,6 @@
+import { Options } from '@/model/options.model';
 import { Vue } from "vue-property-decorator";
-import { Options } from '@/catalogo.component';
-declare const areaConocimientoHierarchy: {
+declare let areaConocimientoHierarchy: {
     path: string;
     prop: string;
     label: string;

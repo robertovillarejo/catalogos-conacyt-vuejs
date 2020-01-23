@@ -80,6 +80,14 @@
               :required="true"
               @complete="fullModel = $event"
             ></nested-select>
+            <div v-if="$v.model.$invalid">
+              <small
+                class="form-text text-danger"
+                v-if="!$v.model.required"
+                v-text="$t('areaConocimientoCrud.validation.required')"
+                >Este campo es requerido</small
+              >
+            </div>
             <div
               class="form-group"
               v-if="options.requiredLevel === Level.ESPECIALIDAD"
@@ -96,6 +104,14 @@
                 name="especialidad"
                 v-model.trim="especialidad"
               />
+              <div v-if="$v.especialidad.$invalid">
+                <small
+                  class="form-text text-danger"
+                  v-if="!$v.especialidad.required"
+                  v-text="$t('areaConocimientoCrud.validation.required')"
+                  >Este campo es requerido</small
+                >
+              </div>
             </div>
           </div>
         </form>
@@ -113,6 +129,7 @@
           type="button"
           class="btn btn-primary"
           id="confirm-add-area-conocimiento"
+          :disabled="$v.model.$invalid || $v.especialidad.$invalid"
           @click="add()"
         >
           <span v-text="$t('areaConocimientoCrud.add')">Agregar</span>

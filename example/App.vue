@@ -22,8 +22,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import CatalogoComponent from "../src/index";
 import { Level } from "../src/area-conocimiento-crud/level.model";
 import VueI18n from "vue-i18n";
+import Vuelidate from "vuelidate";
 
 Vue.use(VueI18n);
+Vue.use(Vuelidate);
 
 Vue.use(CatalogoComponent, {
   host:

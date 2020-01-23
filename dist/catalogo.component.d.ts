@@ -1,12 +1,5 @@
 import { Vue } from "vue-property-decorator";
-export declare class Options {
-    requiredLevel?: string | undefined;
-    host: string;
-    context: string;
-    constructor(host?: string, context?: string, requiredLevel?: string | undefined);
-}
-declare const defaultConfig: Options;
-export { defaultConfig };
+import { Options } from '@/model/options.model';
 export default class CatalogoComponent extends Vue {
     options: Array<any>;
     private schema;

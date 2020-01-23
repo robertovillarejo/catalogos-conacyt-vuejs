@@ -1,6 +1,8 @@
 import { areaConocimientoHierarchy } from "@/area-conocimiento/area-conocimiento.component";
 import { campoHierarchy } from "@/campo/campo.component";
 import { disciplinaHierachy } from "@/disciplina/disciplina.component";
+import i18nEn from "@/i18n/en/areaConocimientoCrud.json";
+import i18nEs from "@/i18n/es/areaConocimientoCrud.json";
 import { AreaDeConocimiento, IAreaDeConocimiento } from '@/model/area-conocimiento.model';
 import { defaultConfig, Options } from '@/model/options.model';
 import { subdisciplinaHierachy } from "@/subdisciplina/subdisciplina.component";
@@ -13,12 +15,23 @@ import bModal from 'bootstrap-vue/es/components/modal/modal';
 import bModalDirective from 'bootstrap-vue/es/directives/modal/modal';
 import Component from "vue-class-component";
 import { Prop, Vue } from "vue-property-decorator";
-import { Level } from './level.model';
-import i18nEs from "@/i18n/es/areaConocimientoCrud.json";
-import i18nEn from "@/i18n/en/areaConocimientoCrud.json";
 import { IVueI18n } from "vue-i18n/types/index";
+import { required, requiredIf } from 'vuelidate/lib/validators';
+import { Level } from './level.model';
+import Vuelidate from "vuelidate";
 
 library.add(faTimes);
+
+export const areaConocimientoCrudValidations = {
+    model: {
+        required
+    },
+    especialidad: {
+        required: requiredIf(model => {
+            return model.options.requiredLevel === Level.ESPECIALIDAD;
+        })
+    }
+};
 
 @Component({
     components: {
@@ -29,7 +42,8 @@ library.add(faTimes);
     },
     directives: {
         'b-modal': bModalDirective
-    }
+    },
+    validations: areaConocimientoCrudValidations
 })
 export default class AreaConocimientoCrudComponent extends Vue {
 
@@ -49,31 +63,8 @@ export default class AreaConocimientoCrudComponent extends Vue {
     public especialidad: string = '';
 
     created() {
-        if (this.$i18n) {
-            this.$i18n.mergeLocaleMessage('es', i18nEs);
-            this.$i18n.mergeLocaleMessage('en', i18nEn);
-        }
-        switch (this.options.requiredLevel) {
-            case Level.AREA:
-                this.hierarchyModel = areaConocimientoHierarchy;
-                break;
-
-            case Level.CAMPO:
-                this.hierarchyModel = campoHierarchy;
-                break;
-
-            case Level.DISCIPLINA:
-                this.hierarchyModel = disciplinaHierachy;
-                break;
-
-            case Level.SUBDISCIPLINA:
-            case Level.ESPECIALIDAD:
-                this.hierarchyModel = subdisciplinaHierachy;
-                break;
-
-            default:
-                break;
-        }
+        this.initHierarchyModel();
+        this.initI18n();
     }
 
     public get options(): Options {
@@ -129,5 +120,36 @@ export default class AreaConocimientoCrudComponent extends Vue {
 
     public closeConfirmationDialog() {
         (<any>this.$refs).removeAreaConocimiento.hide();
+    }
+
+    private initHierarchyModel(): void {
+        switch (this.options.requiredLevel) {
+            case Level.AREA:
+                this.hierarchyModel = areaConocimientoHierarchy;
+                break;
+
+            case Level.CAMPO:
+                this.hierarchyModel = campoHierarchy;
+                break;
+
+            case Level.DISCIPLINA:
+                this.hierarchyModel = disciplinaHierachy;
+                break;
+
+            case Level.SUBDISCIPLINA:
+            case Level.ESPECIALIDAD:
+                this.hierarchyModel = subdisciplinaHierachy;
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    private initI18n(): void {
+        if (this.$i18n) {
+            this.$i18n.mergeLocaleMessage('es', i18nEs);
+            this.$i18n.mergeLocaleMessage('en', i18nEn);
+        }
     }
 }

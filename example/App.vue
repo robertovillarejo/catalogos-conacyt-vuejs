@@ -2,7 +2,29 @@
   <div id="app">
     <div class="row">
       <div class="col-2"></div>
+      <div class="col-8 text-center">
+        <h1>Catalogos Library</h1>
+      </div>
+      <div class="col-2"></div>
+    </div>
+    <div class="row">
+      <div class="col-2"></div>
       <div class="col-8">
+        <form name="preferences" role="form" @submit.prevent>
+          <div class="form-group">
+            <label for="localeSelect">
+              <span v-text="$t('language')">Idioma</span>
+            </label>
+            <select name="localeSelect" id="localeSelect" v-model="lang">
+              <option
+                v-bind:value="locale"
+                v-for="locale in $i18n.availableLocales"
+                :key="locale"
+                >{{ locale }}</option
+              >
+            </select>
+          </div>
+        </form>
         <h2 class="text-center">AreaConocimientoCrud Component</h2>
         <area-conocimiento-crud
           v-model="areas"
@@ -35,13 +57,22 @@ Vue.use(CatalogoComponent, {
 });
 
 const i18n = new VueI18n({
-  locale: "en"
+  locale: "es",
+  messages: {
+    en: {
+      language: "Language"
+    },
+    es: {
+      language: "Idioma"
+    }
+  }
 });
 
 export default Vue.extend({
   i18n,
   data: function() {
     return {
+      lang: i18n.locale,
       areas: [
         {
           id: 1,
@@ -70,6 +101,11 @@ export default Vue.extend({
     addArea(area) {
       area.id = new Date().getUTCMilliseconds();
       this.areas.push(area);
+    }
+  },
+  watch: {
+    lang: function(lang) {
+      i18n.locale = lang;
     }
   }
 });

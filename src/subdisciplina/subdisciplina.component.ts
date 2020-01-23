@@ -3,29 +3,29 @@ import { NestedSelectComponent } from "@conacyt/nested-select";
 import Component from "vue-class-component";
 import { Prop, Vue } from "vue-property-decorator";
 
-const subdisciplinaHierachy = [
+let subdisciplinaHierachy = [
     {
         path: "/areas-conocimiento",
         prop: "id",
-        label: "descripcionEsp",
+        label: "descripcion",
         selectLabel: "Area de conocimiento"
     },
     {
         path: "/areas-conocimiento/[id]/campos",
         prop: "id",
-        label: "descripcionEsp",
+        label: "descripcion",
         selectLabel: "Campo"
     },
     {
         path: "/campos/[id]/disciplinas",
         prop: "id",
-        label: "descripcionEsp",
+        label: "descripcion",
         selectLabel: "Disciplina"
     },
     {
         path: "/disciplinas/[id]/subdisciplinas",
         prop: "id",
-        label: "descripcionEsp",
+        label: "descripcion",
         selectLabel: "Subdisciplina"
     }
 ];

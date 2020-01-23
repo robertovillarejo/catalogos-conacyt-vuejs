@@ -16,30 +16,30 @@
 </template>
 
 <script lang="ts">
-import Vue, { VueConstructor } from "vue";
+import Vue from "vue";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CatalogoComponent from "../src/index";
 import { Level } from "../src/area-conocimiento-crud/level.model";
+import VueI18n from "vue-i18n";
+
+Vue.use(VueI18n);
 
 Vue.use(CatalogoComponent, {
   host:
     "https://my-json-server.typicode.com/robertovillarejo/catalogos-conacyt-vuejs",
   context: "",
-  requiredLevel: Level.CAMPO
+  requiredLevel: Level.ESPECIALIDAD
+});
+
+const i18n = new VueI18n({
+  locale: "en"
 });
 
 export default Vue.extend({
+  i18n,
   data: function() {
     return {
-      areaConocimiento: null,
-      campo: null,
-      disciplina: null,
-      subdisciplina: null,
-      myModel: {
-        id: null
-      },
-      pathVariable: "1",
       areas: [
         {
           id: 1,
@@ -57,13 +57,6 @@ export default Vue.extend({
     };
   },
   methods: {
-    processRequest: function() {
-      alert(JSON.stringify(this.myModel));
-    },
-    changePathVariable: function() {
-      this.pathVariable = this.pathVariable + "0";
-      console.log("PathVariable:", this.pathVariable);
-    },
     deleteArea(area) {
       const i = this.areas.findIndex(a => {
         return a.id === a.id;

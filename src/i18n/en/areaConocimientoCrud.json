@@ -1,0 +1,18 @@
+{
+    "areaConocimientoCrud": {
+        "title": "Knowledge areas",
+        "add": "Add",
+        "area": "Area",
+        "campo": "Field",
+        "disciplina": "Discipline",
+        "subdisciplina": "Subdiscipline",
+        "especialidad": "Speciality",
+        "addTitle": "Add knowledge area",
+        "cancel": "Cancel",
+        "confirm": {
+            "title": "Confirm delete operation",
+            "delete": "Are you sure you want to delete this knowledge area?"
+        },
+        "delete": "Delete"
+    }
+}

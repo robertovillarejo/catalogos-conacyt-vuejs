@@ -1,0 +1,18 @@
+{
+    "areaConocimientoCrud": {
+        "title": "Áreas de conocimiento",
+        "add": "Agregar",
+        "area": "Área",
+        "campo": "Campo",
+        "disciplina": "Disciplina",
+        "subdisciplina": "Subdisciplina",
+        "especialidad": "Especialidad",
+        "addTitle": "Agregar área de conocimiento",
+        "cancel": "Cancelar",
+        "confirm": {
+            "title": "Confirmar operación de borrado",
+            "delete": "¿Está seguro que quiere borrar esta Área de Conocimiento?"
+        },
+        "delete": "Eliminar"
+    }
+}

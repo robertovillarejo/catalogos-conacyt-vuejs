@@ -3,11 +3,11 @@ import { NestedSelectComponent } from "@conacyt/nested-select";
 import Component from "vue-class-component";
 import { Prop, Vue } from "vue-property-decorator";
 
-const areaConocimientoHierarchy = [
+let areaConocimientoHierarchy = [
     {
         path: "/areas-conocimiento",
         prop: "id",
-        label: "descripcionEsp",
+        label: "descripcion",
         selectLabel: "Area de conocimiento"
     }
 ];

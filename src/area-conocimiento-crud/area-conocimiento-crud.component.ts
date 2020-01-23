@@ -14,6 +14,9 @@ import bModalDirective from 'bootstrap-vue/es/directives/modal/modal';
 import Component from "vue-class-component";
 import { Prop, Vue } from "vue-property-decorator";
 import { Level } from './level.model';
+import i18nEs from "@/i18n/es/areaConocimientoCrud.json";
+import i18nEn from "@/i18n/en/areaConocimientoCrud.json";
+import { IVueI18n } from "vue-i18n/types/index";
 
 library.add(faTimes);
 
@@ -46,6 +49,10 @@ export default class AreaConocimientoCrudComponent extends Vue {
     public especialidad: string = '';
 
     created() {
+        if (this.$i18n) {
+            this.$i18n.mergeLocaleMessage('es', i18nEs);
+            this.$i18n.mergeLocaleMessage('en', i18nEn);
+        }
         switch (this.options.requiredLevel) {
             case Level.AREA:
                 this.hierarchyModel = areaConocimientoHierarchy;

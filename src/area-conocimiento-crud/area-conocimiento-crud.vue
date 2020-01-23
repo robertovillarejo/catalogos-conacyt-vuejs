@@ -2,25 +2,37 @@
   <div>
     <form @submit.prevent novalidate class="text-left">
       <button class="btn btn-primary" v-b-modal.areaConocimientoCrud>
-        Agregar
+        <span v-text="$t('areaConocimientoCrud.add')">Agregar</span>
       </button>
     </form>
     <div class="table-responsive">
       <table class="table table-striped">
         <caption class="text-center">
-          <h5>Áreas de conocimiento</h5>
+          <h5 v-text="$t('areaConocimientoCrud.title')">
+            Áreas de conocimiento
+          </h5>
         </caption>
         <thead>
-          <th scope="col" v-if="options.requiredLevel >= Level.AREA">Área</th>
-          <th scope="col" v-if="options.requiredLevel >= Level.CAMPO">Campo</th>
+          <th scope="col" v-if="options.requiredLevel >= Level.AREA">
+            <span v-text="$t('areaConocimientoCrud.area')">Área</span>
+          </th>
+          <th scope="col" v-if="options.requiredLevel >= Level.CAMPO">
+            <span v-text="$t('areaConocimientoCrud.campo')">Campo</span>
+          </th>
           <th scope="col" v-if="options.requiredLevel >= Level.DISCIPLINA">
-            Disciplina
+            <span v-text="$t('areaConocimientoCrud.disciplina')"
+              >Disciplina</span
+            >
           </th>
           <th scope="col" v-if="options.requiredLevel >= Level.SUBDISCIPLINA">
-            Subdisciplina
+            <span v-text="$t('areaConocimientoCrud.subdisciplina')"
+              >Subdisciplina</span
+            >
           </th>
           <th scope="col" v-if="options.requiredLevel >= Level.ESPECIALIDAD">
-            Especialidad
+            <span v-text="$t('areaConocimientoCrud.especialidad')"
+              >Especialidad</span
+            >
           </th>
           <th scope="col"></th>
         </thead>
@@ -54,9 +66,11 @@
     </div>
 
     <b-modal id="areaConocimientoCrud" ref="areaConocimientoCrud">
-      <span slot="modal-title">Agregar área de conocimiento</span>
+      <span slot="modal-title" v-text="$t('areaConocimientoCrud.addTitle')"
+        >Agregar área de conocimiento</span
+      >
       <div class="modal-body">
-        <form name="addAreaConocimientoForm" role="form" @submit.prevent="">
+        <form name="addAreaConocimientoForm" role="form" @submit.prevent>
           <div>
             <!--NestedSelect is a div with 'form-group' class-->
             <nested-select
@@ -70,7 +84,11 @@
               class="form-group"
               v-if="options.requiredLevel === Level.ESPECIALIDAD"
             >
-              <label for="especialidad">Especialidad</label>
+              <label
+                for="especialidad"
+                v-text="$t('areaConocimientoCrud.especialidad')"
+                >Especialidad</label
+              >
               <input
                 type="text"
                 class="form-control"
@@ -89,7 +107,7 @@
           id="cancel-add-area-conocimiento"
           @click="closeDialog()"
         >
-          Cancel
+          <span v-text="$t('areaConocimientoCrud.cancel')">Cancel</span>
         </button>
         <button
           type="button"
@@ -97,18 +115,23 @@
           id="confirm-add-area-conocimiento"
           @click="add()"
         >
-          Agregar
+          <span v-text="$t('areaConocimientoCrud.add')">Agregar</span>
         </button>
       </div>
     </b-modal>
     <b-modal ref="removeAreaConocimiento" id="removeAreaConocimiento">
       <span slot="modal-title">
-        <span id="catalogos.areaConocimiento.delete.question"
+        <span
+          id="catalogos.areaConocimiento.delete.question"
+          v-text="$t('areaConocimientoCrud.confirm.title')"
           >Confirmar operación de borrado</span
         >
       </span>
       <div class="modal-body">
-        <p id="catalogos-delete-area-conocimiento-heading">
+        <p
+          id="catalogos-delete-area-conocimiento-heading"
+          v-text="$t('areaConocimientoCrud.confirm.delete')"
+        >
           ¿Está seguro que quiere borrar esta Área de Conocimiento?
         </p>
       </div>
@@ -118,7 +141,7 @@
           class="btn btn-secondary"
           v-on:click="closeConfirmationDialog()"
         >
-          Cancel
+          <span v-text="$t('areaConocimientoCrud.cancel')">Cancel</span>
         </button>
         <button
           type="button"
@@ -126,7 +149,7 @@
           id="catalogos-confirm-delete-area-conocimiento"
           v-on:click="removeAreaConocimiento()"
         >
-          Delete
+          <span v-text="$t('areaConocimientoCrud.delete')">Delete</span>
         </button>
       </div>
     </b-modal>

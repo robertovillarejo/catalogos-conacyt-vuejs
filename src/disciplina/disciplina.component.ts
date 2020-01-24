@@ -7,20 +7,17 @@ let disciplinaHierachy = [
     {
         path: "/areas-conocimiento",
         prop: "id",
-        label: "descripcion",
-        selectLabel: "Area de conocimiento"
+        label: "descripcion"
     },
     {
         path: "/areas-conocimiento/[id]/campos",
         prop: "id",
-        label: "descripcion",
-        selectLabel: "Campo"
+        label: "descripcion"
     },
     {
         path: "/campos/[id]/disciplinas",
         prop: "id",
-        label: "descripcion",
-        selectLabel: "Disciplinas"
+        label: "descripcion"
     }
 ];
 

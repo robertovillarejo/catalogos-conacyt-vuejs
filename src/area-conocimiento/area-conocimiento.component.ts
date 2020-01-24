@@ -7,8 +7,7 @@ let areaConocimientoHierarchy = [
     {
         path: "/areas-conocimiento",
         prop: "id",
-        label: "descripcion",
-        selectLabel: "Area de conocimiento"
+        label: "descripcion"
     }
 ];
 export { areaConocimientoHierarchy };

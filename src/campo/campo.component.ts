@@ -7,14 +7,12 @@ let campoHierarchy = [
     {
         path: "/areas-conocimiento",
         prop: "id",
-        label: "descripcion",
-        selectLabel: "Area de conocimiento"
+        label: "descripcion"
     },
     {
         path: "/areas-conocimiento/[id]/campos",
         prop: "id",
-        label: "descripcion",
-        selectLabel: "Campo"
+        label: "descripcion"
     }
 ];
 

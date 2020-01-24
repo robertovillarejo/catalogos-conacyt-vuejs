@@ -79,7 +79,24 @@
               v-model="model"
               :required="true"
               @complete="fullModel = $event"
-            ></nested-select>
+            >
+              <template slot="0">
+                <span v-text="$t('areaConocimientoCrud.area')">Area</span>
+              </template>
+              <template slot="1">
+                <span v-text="$t('areaConocimientoCrud.campo')">Campo</span>
+              </template>
+              <template slot="2">
+                <span v-text="$t('areaConocimientoCrud.disciplina')"
+                  >Disciplina</span
+                >
+              </template>
+              <template slot="2">
+                <span v-text="$t('areaConocimientoCrud.subdisciplina')"
+                  >Subdisciplina</span
+                >
+              </template>
+            </nested-select>
             <div v-if="$v.model.$invalid">
               <small
                 class="form-text text-danger"

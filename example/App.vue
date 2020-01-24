@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-2"></div>
       <div class="col-8 text-center">
-        <h1>Catalogos Library</h1>
+        <h1 v-text="$t('title')">Catalogos Library</h1>
       </div>
       <div class="col-2"></div>
     </div>
@@ -60,9 +60,11 @@ const i18n = new VueI18n({
   locale: "es",
   messages: {
     en: {
+      title: "Catalogos Library",
       language: "Language"
     },
     es: {
+      title: "Librería de Catálogos",
       language: "Idioma"
     }
   }

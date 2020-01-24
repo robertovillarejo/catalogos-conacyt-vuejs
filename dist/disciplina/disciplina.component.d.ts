@@ -4,7 +4,6 @@ declare let disciplinaHierachy: {
     path: string;
     prop: string;
     label: string;
-    selectLabel: string;
 }[];
 export { disciplinaHierachy };
 export default class DisciplinaComponent extends Vue {
@@ -15,6 +14,5 @@ export default class DisciplinaComponent extends Vue {
         path: string;
         prop: string;
         label: string;
-        selectLabel: string;
     }[];
 }

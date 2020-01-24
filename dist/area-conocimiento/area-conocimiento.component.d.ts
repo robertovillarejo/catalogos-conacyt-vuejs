@@ -4,7 +4,6 @@ declare let areaConocimientoHierarchy: {
     path: string;
     prop: string;
     label: string;
-    selectLabel: string;
 }[];
 export { areaConocimientoHierarchy };
 export default class AreaConocimientoComponent extends Vue {
@@ -14,7 +13,6 @@ export default class AreaConocimientoComponent extends Vue {
         path: string;
         prop: string;
         label: string;
-        selectLabel: string;
     }[];
     readonly options: Options;
 }

@@ -44,8 +44,7 @@ var defaultConfig = new Options();
 var areaConocimientoHierarchy = [{
   path: "/areas-conocimiento",
   prop: "id",
-  label: "descripcion",
-  selectLabel: "Area de conocimiento"
+  label: "descripcion"
 }];
 
 var AreaConocimientoComponent =
@@ -100,13 +99,11 @@ function (_super) {
 var campoHierarchy = [{
   path: "/areas-conocimiento",
   prop: "id",
-  label: "descripcion",
-  selectLabel: "Area de conocimiento"
+  label: "descripcion"
 }, {
   path: "/areas-conocimiento/[id]/campos",
   prop: "id",
-  label: "descripcion",
-  selectLabel: "Campo"
+  label: "descripcion"
 }];
 
 var CampoComponent =
@@ -161,18 +158,15 @@ function (_super) {
 var disciplinaHierachy = [{
   path: "/areas-conocimiento",
   prop: "id",
-  label: "descripcion",
-  selectLabel: "Area de conocimiento"
+  label: "descripcion"
 }, {
   path: "/areas-conocimiento/[id]/campos",
   prop: "id",
-  label: "descripcion",
-  selectLabel: "Campo"
+  label: "descripcion"
 }, {
   path: "/campos/[id]/disciplinas",
   prop: "id",
-  label: "descripcion",
-  selectLabel: "Disciplinas"
+  label: "descripcion"
 }];
 
 var DisciplinaComponent =
@@ -292,23 +286,19 @@ function () {
 var subdisciplinaHierachy = [{
   path: "/areas-conocimiento",
   prop: "id",
-  label: "descripcion",
-  selectLabel: "Area de conocimiento"
+  label: "descripcion"
 }, {
   path: "/areas-conocimiento/[id]/campos",
   prop: "id",
-  label: "descripcion",
-  selectLabel: "Campo"
+  label: "descripcion"
 }, {
   path: "/campos/[id]/disciplinas",
   prop: "id",
-  label: "descripcion",
-  selectLabel: "Disciplina"
+  label: "descripcion"
 }, {
   path: "/disciplinas/[id]/subdisciplinas",
   prop: "id",
-  label: "descripcion",
-  selectLabel: "Subdisciplina"
+  label: "descripcion"
 }];
 
 var SubdisciplinaComponent =
@@ -556,7 +546,7 @@ var __vue_render__ = function __vue_render__() {
     domProps: {
       "textContent": _vm._s(_vm.$t('areaConocimientoCrud.title'))
     }
-  }, [_vm._v("Áreas de conocimiento")])]), _vm._v(" "), _c('thead', [_vm.options.requiredLevel >= _vm.Level.AREA ? _c('th', {
+  }, [_vm._v("\n          Áreas de conocimiento\n        ")])]), _vm._v(" "), _c('thead', [_vm.options.requiredLevel >= _vm.Level.AREA ? _c('th', {
     attrs: {
       "scope": "col"
     }
@@ -603,7 +593,7 @@ var __vue_render__ = function __vue_render__() {
   })]), _vm._v(" "), _c('tbody', _vm._l(_vm.value, function (e, i) {
     return _c('tr', {
       key: i
-    }, [_vm.options.requiredLevel >= _vm.Level.AREA ? _c('td', [_vm._v(_vm._s(e.area))]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel >= _vm.Level.CAMPO ? _c('td', [_vm._v(_vm._s(e.campo))]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel >= _vm.Level.DISCIPLINA ? _c('td', [_vm._v(_vm._s(e.disciplina))]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel >= _vm.Level.SUBDISCIPLINA ? _c('td', [_vm._v(_vm._s(e.subdisciplina))]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel >= _vm.Level.ESPECIALIDAD ? _c('td', [_vm._v(_vm._s(e.especialidad))]) : _vm._e(), _vm._v(" "), _c('td', {
+    }, [_vm.options.requiredLevel >= _vm.Level.AREA ? _c('td', [_vm._v(_vm._s(e.area))]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel >= _vm.Level.CAMPO ? _c('td', [_vm._v(_vm._s(e.campo))]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel >= _vm.Level.DISCIPLINA ? _c('td', [_vm._v("\n            " + _vm._s(e.disciplina) + "\n          ")]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel >= _vm.Level.SUBDISCIPLINA ? _c('td', [_vm._v("\n            " + _vm._s(e.subdisciplina) + "\n          ")]) : _vm._e(), _vm._v(" "), _vm.options.requiredLevel >= _vm.Level.ESPECIALIDAD ? _c('td', [_vm._v("\n            " + _vm._s(e.especialidad) + "\n          ")]) : _vm._e(), _vm._v(" "), _c('td', {
       staticClass: "text-right"
     }, [_c('div', {
       staticClass: "btn-group flex-btn-group-container"
@@ -665,7 +655,31 @@ var __vue_render__ = function __vue_render__() {
       },
       expression: "model"
     }
-  }), _vm._v(" "), _vm.$v.model.$invalid ? _c('div', [!_vm.$v.model.required ? _c('small', {
+  }, [_c('template', {
+    slot: "0"
+  }, [_c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.area'))
+    }
+  }, [_vm._v("Area")])]), _vm._v(" "), _c('template', {
+    slot: "1"
+  }, [_c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.campo'))
+    }
+  }, [_vm._v("Campo")])]), _vm._v(" "), _c('template', {
+    slot: "2"
+  }, [_c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.disciplina'))
+    }
+  }, [_vm._v("Disciplina")])]), _vm._v(" "), _c('template', {
+    slot: "2"
+  }, [_c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('areaConocimientoCrud.subdisciplina'))
+    }
+  }, [_vm._v("Subdisciplina")])])], 2), _vm._v(" "), _vm.$v.model.$invalid ? _c('div', [!_vm.$v.model.required ? _c('small', {
     staticClass: "form-text text-danger",
     domProps: {
       "textContent": _vm._s(_vm.$t('areaConocimientoCrud.validation.required'))
@@ -777,7 +791,7 @@ var __vue_render__ = function __vue_render__() {
     domProps: {
       "textContent": _vm._s(_vm.$t('areaConocimientoCrud.confirm.delete'))
     }
-  }, [_vm._v("¿Está seguro que quiere borrar esta Área de Conocimiento?")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n        ¿Está seguro que quiere borrar esta Área de Conocimiento?\n      ")])]), _vm._v(" "), _c('div', {
     attrs: {
       "slot": "modal-footer"
     },
@@ -819,8 +833,8 @@ var __vue_staticRenderFns__ = [];
 
 var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-33feb0d0_0", {
-    source: "caption[data-v-33feb0d0]{caption-side:top}",
+  inject("data-v-417f6457_0", {
+    source: "caption[data-v-417f6457]{caption-side:top}",
     map: undefined,
     media: undefined
   });
@@ -828,7 +842,7 @@ var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__ = "data-v-33feb0d0";
+var __vue_scope_id__ = "data-v-417f6457";
 /* module identifier */
 
 var __vue_module_identifier__ = undefined;

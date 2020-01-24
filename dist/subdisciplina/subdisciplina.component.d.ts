@@ -4,7 +4,6 @@ declare let subdisciplinaHierachy: {
     path: string;
     prop: string;
     label: string;
-    selectLabel: string;
 }[];
 export { subdisciplinaHierachy };
 export default class SubdisciplinaComponent extends Vue {
@@ -15,6 +14,5 @@ export default class SubdisciplinaComponent extends Vue {
         path: string;
         prop: string;
         label: string;
-        selectLabel: string;
     }[];
 }

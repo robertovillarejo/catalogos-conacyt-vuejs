@@ -4,7 +4,6 @@ declare let campoHierarchy: {
     path: string;
     prop: string;
     label: string;
-    selectLabel: string;
 }[];
 export { campoHierarchy };
 export default class CampoComponent extends Vue {
@@ -15,6 +14,5 @@ export default class CampoComponent extends Vue {
         path: string;
         prop: string;
         label: string;
-        selectLabel: string;
     }[];
 }

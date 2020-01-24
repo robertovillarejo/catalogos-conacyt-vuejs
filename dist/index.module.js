@@ -634,6 +634,7 @@ var __vue_render__ = function __vue_render__() {
   }, [_c('div', [_c('nested-select', {
     attrs: {
       "host": _vm.options.host,
+      "context": _vm.options.context,
       "hierarchy": _vm.hierarchyModel,
       "required": true
     },
@@ -668,7 +669,7 @@ var __vue_render__ = function __vue_render__() {
       "textContent": _vm._s(_vm.$t('areaConocimientoCrud.disciplina'))
     }
   }, [_vm._v("Disciplina")])]), _vm._v(" "), _c('template', {
-    slot: "2"
+    slot: "3"
   }, [_c('span', {
     domProps: {
       "textContent": _vm._s(_vm.$t('areaConocimientoCrud.subdisciplina'))
@@ -827,8 +828,8 @@ var __vue_staticRenderFns__ = [];
 
 var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-417f6457_0", {
-    source: "caption[data-v-417f6457]{caption-side:top}",
+  inject("data-v-6464c5bf_0", {
+    source: "caption[data-v-6464c5bf]{caption-side:top}",
     map: undefined,
     media: undefined
   });
@@ -836,7 +837,7 @@ var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__ = "data-v-417f6457";
+var __vue_scope_id__ = "data-v-6464c5bf";
 /* module identifier */
 
 var __vue_module_identifier__ = undefined;

@@ -75,6 +75,7 @@
             <!--NestedSelect is a div with 'form-group' class-->
             <nested-select
               :host="options.host"
+              :context="options.context"
               :hierarchy="hierarchyModel"
               v-model="model"
               :required="true"
@@ -91,7 +92,7 @@
                   >Disciplina</span
                 >
               </template>
-              <template slot="2">
+              <template slot="3">
                 <span v-text="$t('areaConocimientoCrud.subdisciplina')"
                   >Subdisciplina</span
                 >

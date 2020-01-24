@@ -15,10 +15,14 @@
             <label for="localeSelect">
               <span v-text="$t('language')">Idioma</span>
             </label>
-            <select name="localeSelect" id="localeSelect" v-model="lang">
+            <select
+              name="localeSelect"
+              id="localeSelect"
+              v-model="$i18n.locale"
+            >
               <option
                 v-bind:value="locale"
-                v-for="locale in $i18n.availableLocales"
+                v-for="locale in availableLocales"
                 :key="locale"
                 >{{ locale }}</option
               >
@@ -50,14 +54,13 @@ Vue.use(VueI18n);
 Vue.use(Vuelidate);
 
 Vue.use(CatalogoComponent, {
-  host:
-    "https://my-json-server.typicode.com/robertovillarejo/catalogos-conacyt-vuejs",
-  context: "",
+  host: "https://my-json-server.typicode.com",
+  context: "/robertovillarejo/catalogos-conacyt-vuejs",
   requiredLevel: Level.ESPECIALIDAD
 });
 
 const i18n = new VueI18n({
-  locale: "es",
+  locale: "en",
   messages: {
     en: {
       title: "Catalogos Library",
@@ -74,7 +77,6 @@ export default Vue.extend({
   i18n,
   data: function() {
     return {
-      lang: i18n.locale,
       areas: [
         {
           id: 1,
@@ -105,9 +107,9 @@ export default Vue.extend({
       this.areas.push(area);
     }
   },
-  watch: {
-    lang: function(lang) {
-      i18n.locale = lang;
+  computed: {
+    availableLocales: function() {
+      return Object.keys(this.$i18n.messages);
     }
   }
 });

@@ -212,52 +212,6 @@ function (_super) {
   return DisciplinaComponent;
 }(Vue);
 
-var areaConocimientoCrud = {
-	title: "Knowledge areas",
-	add: "Add",
-	area: "Area",
-	campo: "Field",
-	disciplina: "Discipline",
-	subdisciplina: "Subdiscipline",
-	especialidad: "Speciality",
-	addTitle: "Add knowledge area",
-	cancel: "Cancel",
-	confirm: {
-		title: "Confirm delete operation",
-		"delete": "Are you sure you want to delete this knowledge area?"
-	},
-	"delete": "Delete",
-	validation: {
-		required: "This field is required"
-	}
-};
-var i18nEn = {
-	areaConocimientoCrud: areaConocimientoCrud
-};
-
-var areaConocimientoCrud$1 = {
-	title: "Áreas de conocimiento",
-	add: "Agregar",
-	area: "Área",
-	campo: "Campo",
-	disciplina: "Disciplina",
-	subdisciplina: "Subdisciplina",
-	especialidad: "Especialidad",
-	addTitle: "Agregar área de conocimiento",
-	cancel: "Cancelar",
-	confirm: {
-		title: "Confirmar operación de borrado",
-		"delete": "¿Está seguro que quiere borrar esta Área de Conocimiento?"
-	},
-	"delete": "Eliminar",
-	validation: {
-		required: "Este campo es requerido"
-	}
-};
-var i18nEs = {
-	areaConocimientoCrud: areaConocimientoCrud$1
-};
-
 var AreaDeConocimiento =
 /** @class */
 function () {
@@ -374,7 +328,6 @@ function (_super) {
 
   AreaConocimientoCrudComponent.prototype.created = function () {
     this.initHierarchyModel();
-    this.initI18n();
   };
 
   Object.defineProperty(AreaConocimientoCrudComponent.prototype, "options", {
@@ -466,13 +419,6 @@ function (_super) {
 
       default:
         break;
-    }
-  };
-
-  AreaConocimientoCrudComponent.prototype.initI18n = function () {
-    if (this.$i18n) {
-      this.$i18n.mergeLocaleMessage('es', i18nEs);
-      this.$i18n.mergeLocaleMessage('en', i18nEn);
     }
   };
 

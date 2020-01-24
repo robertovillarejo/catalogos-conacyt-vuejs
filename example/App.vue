@@ -49,6 +49,8 @@ import CatalogoComponent from "../src/index";
 import { Level } from "../src/area-conocimiento-crud/level.model";
 import VueI18n from "vue-i18n";
 import Vuelidate from "vuelidate";
+import i18nEn from "../src/i18n/en/areaConocimientoCrud.json";
+import i18nEs from "../src/i18n/es/areaConocimientoCrud.json";
 
 Vue.use(VueI18n);
 Vue.use(Vuelidate);
@@ -72,6 +74,9 @@ const i18n = new VueI18n({
     }
   }
 });
+
+i18n.mergeLocaleMessage("es", i18nEs);
+i18n.mergeLocaleMessage("en", i18nEn);
 
 export default Vue.extend({
   i18n,

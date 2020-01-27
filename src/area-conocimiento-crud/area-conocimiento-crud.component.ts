@@ -64,6 +64,7 @@ export default class AreaConocimientoCrudComponent extends Vue {
 
     created() {
         this.initHierarchyModel();
+        this.initI18n();
     }
 
     public get options(): Options {
@@ -142,6 +143,13 @@ export default class AreaConocimientoCrudComponent extends Vue {
 
             default:
                 break;
+        }
+    }
+
+    private initI18n(): void {
+        if (this.$i18n) {
+            this.$i18n.mergeLocaleMessage('es', i18nEs);
+            this.$i18n.mergeLocaleMessage('en', i18nEn);
         }
     }
 }

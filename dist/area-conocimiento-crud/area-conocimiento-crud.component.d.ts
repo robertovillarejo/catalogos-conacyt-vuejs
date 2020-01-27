@@ -28,4 +28,5 @@ export default class AreaConocimientoCrudComponent extends Vue {
     removeAreaConocimiento(): void;
     closeConfirmationDialog(): void;
     private initHierarchyModel;
+    private initI18n;
 }

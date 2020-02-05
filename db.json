@@ -2,49 +2,405 @@
     "areas-conocimiento": [
         {
             "id": 1,
-            "descripcion": "AreaConocimiento 1",
-            "descripcionEsp": "AreaConocimiento 1"
+            "descripcion": "Ingenieria y tecnologia",
+            "descripcionIng": "Ingeneering and Technology",
+            "clavearea": 1
         },
         {
             "id": 2,
-            "descripcion": "AreaConocimiento 2",
-            "descripcionEsp": "AreaConocimiento 2"
+            "descripcion": "Ciencias sociales",
+            "descripcionIng": "Social Sciences",
+            "clavearea": 2
+        },
+        {
+            "id": 3,
+            "descripcion": "Biologia y quimica",
+            "descripcionIng": "Bylogy and chemistry",
+            "clavearea": 3
+        },
+        {
+            "id": 4,
+            "descripcion": "Medicina y Ciencias de la salud",
+            "descripcionIng": "Medicine and Health Sciences",
+            "clavearea": 4
         }
     ],
     "campos": [
         {
+            "areaconocimientoId": 1,
             "id": 1,
-            "descripcion": "Campo 1",
-            "descripcionEsp": "Campo 1"
+            "descripcion": "Ingenieria",
+            "descripcionIng": "Engineering",
+            "clavecampo": 1 
         },
         {
+            "areaconocimientoId": 1,
             "id": 2,
-            "descripcion": "Campo 2",
-            "descripcionEsp": "Campo 2"
+            "descripcion": "Ciencias Tecnologias",
+            "descripcionIng": "Technology science",
+            "clavecampo": 2 
+        },
+        {
+            "areaconocimientoId": 2,
+            "id": 3,
+            "descripcion": "Ciencias de la educacion",
+            "descripcionEsp": "Education science",
+            "clavecampo": 3
+
+        },
+        {
+            "areaconocimientoId": 2,
+            "id": 4,
+            "descripcion": "Sociologia",
+            "descripcionEsp": "Sociology",
+            "clavecampo": 4
+
+        },
+        {
+            "areaconocimientoId": 3,
+            "id": 5,
+            "descripcion": "Ciencias de la vida",
+            "descripcionIng": "Life sciences",
+            "clavecampo": 5
+        },
+        {
+            "areaconocimientoId": 3,
+            "id": 6,
+            "descripcion": "Enfermeria",
+            "descripcionIng": "Nursing",
+            "clavecampo": 6
+        },
+        {
+            "areaconocimientoId": 4,
+            "id": 7,
+            "descripcion": "Ciencias medicas",
+            "descripcionEsp": "Medical sciences",
+            "clavecampo": 7
+        },
+        {
+            "areaconocimientoId": 4,
+            "id": 8,
+            "descripcion": "Medicina",
+            "descripcionEsp": "Medicine",
+            "clavecampo": 8
         }
     ],
     "disciplinas": [
         {
+            "campoId": 1,
             "id": 1,
-            "descripcion": "Disciplina 1",
-            "descripcionEsp": "Disciplina 1"
+            "descripcion": "Ingenieria naval",
+            "descripcionIng": "naval engineering",
+            "clavedisciplina": 1
         },
         {
+            "campoId": 1,
             "id": 2,
-            "descripcion": "Disciplina 2",
-            "descripcionEsp": "Disciplina 2"
+            "descripcion": "Ingenieria electronica",
+            "descripcionIng": "Electronic engineering",
+            "clavedisciplina": 2
+        },
+        {
+            "campoId": 2,
+            "id": 3,
+            "descripcion": "Tecnologia de las telecomunicaciones",
+            "descripcionIng": "Telecommunications technology",
+            "clavedisciplina": 3 
+        },
+        {
+            "campoId": 2,
+            "id": 4,
+            "descripcion": "Tecnologia de los alimentos",
+            "descripcionIng": "Food technology",
+            "clavedisciplina": 4 
+        },
+        {
+            "campoId": 3,
+            "id": 5,
+            "descripcion": "Politica educativa",
+            "descripcionIng": "Education policy",
+            "clavedisciplina": 5 
+        },
+        {
+            "campoId": 3,
+            "id": 6,
+            "descripcion": "Educacion",
+            "descripcionIng": "Education",
+            "clavedisciplina": 6 
+        },
+        {
+            "campoId":4,
+            "id": 7,
+            "descripcion": "Cambio y desarrollo social",
+            "descripcionIng": "change and social development",
+            "clavedisciplina": 7 
+        },
+        {
+            "campoId": 4,
+            "id": 8,
+            "descripcion": "Comunicaciones sociales",
+            "descripcionIng": "Social communications",
+            "clavedisciplina": 8
+        },
+        {
+            "campoId":5,
+            "id": 9,
+            "descripcion": "Antropologia (Fisica)",
+            "descripcionIng": "Anthropologia (physical)",
+            "clavedisciplina": 9 
+        },
+        {
+            "campoId": 5,
+            "id": 10,
+            "descripcion": "Biofisica",
+            "descripcionIng": "Biophysics",
+            "clavedisciplina": 10 
+        },        {
+            "campoId": 6,
+            "id": 11,
+            "descripcion": "Enfermeria general y obstetrica",
+            "descripcionIng": "General Nursing and obstetrics",
+            "clavedisciplina": 11 
+        },
+        {
+            "campoId": 6,
+            "id": 12,
+            "descripcion": "Enfermeria de especialidad",
+            "descripcionIng": "Specialty Nursing",
+            "clavedisciplina": 12 
+        },
+        {
+            "campoId": 7,
+            "id": 13,
+            "descripcion": "Biologia Humana",
+            "descripcionIng": "Human biology",
+            "clavedisciplina": 13 
+        },
+        {
+            "campoId": 7,
+            "id": 14,
+            "descripcion": "Bioquimica",
+            "descripcionIng": "Biochemistry",
+            "clavedisciplina": 14 
+        },
+        {
+            "campoId": 8,
+            "id": 15,
+            "descripcion": "Ciencias clinicas",
+            "descripcionIng": "Clinical Sciences",
+            "clavedisciplina": 15 
+        },
+        {
+            "campoId": 8,
+            "id": 16,
+            "descripcion": "Planificacion familiar",
+            "descripcionIng": "Family plannig",
+            "clavedisciplina": 16 
         }
     ],
     "subdisciplinas": [
         {
+            "disciplinaId": 1,
             "id": 1,
-            "descripcion": "Subdisciplina 1",
-            "descripcionEsp": "Subdisciplina 1"
+            "descripcion": "Ingenieria portuaria",
+            "descripcionEsp": "port engineering",
+            "clavesubdisciplina": 1
         },
         {
+            "disciplinaId": 1,
             "id": 2,
-            "descripcion": "Subdisciplina 2",
-            "descripcionEsp": "Subdisciplina 2"
+            "descripcion": "Planeacion portuaria",
+            "descripcionEsp": "port planning",
+            "clavesubdisciplina": 2
+        },       {
+            "disciplinaId": 2,
+            "id": 3,
+            "descripcion": "Electroquimica",
+            "descripcionEsp": "Electrochemistry",
+            "clavesubdisciplina": 3
+        },
+        {
+            "disciplinaId": 2,
+            "id": 4,
+            "descripcion": "Fibras opticas",
+            "descripcionEsp": "Optical fibres",
+            "clavesubdisciplina": 4
+        },
+        {
+            "disciplinaId": 3,
+            "id": 5,
+            "descripcion": "Antenas",
+            "descripcionEsp": "Antennas",
+            "clavesubdisciplina": 5
+        },
+        {
+            "disciplinaId": 3,
+            "id": 6,
+            "descripcion": "Cinematografia",
+            "descripcionEsp": "Cinematography",
+            "clavesubdisciplina": 6
+        },
+        {
+            "disciplinaId": 3,
+            "id": 7,
+            "descripcion": "Ingenieria portuaria",
+            "descripcionEsp": "port engineering",
+            "clavesubdisciplina": 7
+        },
+        {
+            "disciplinaId": 3,
+            "id": 8,
+            "descripcion": "Ingenieria portuaria",
+            "descripcionEsp": "port engineering",
+            "clavesubdisciplina": 8
+        },
+        {
+            "disciplinaId": 4,
+            "id": 9,
+            "descripcion": "otras",
+            "descripcionEsp": "other",
+            "clavesubdisciplina": 9
+        },
+        {
+            "disciplinaId": 4,
+            "id": 10,
+            "descripcion": "Aromatizantes",
+            "descripcionEsp": "Flavoring",
+            "clavesubdisciplina": 10
+        },
+        {
+            "disciplinaId": 5,
+            "id": 11,
+            "descripcion": "No existe subdisciplina",
+            "descripcionEsp": "There is no subdiscipline",
+            "clavesubdisciplina": 11
+        },
+        {
+            "disciplinaId": 6,
+            "id": 12,
+            "descripcion": "Educacion Especial",
+            "descripcionEsp": "Special education",
+            "clavesubdisciplina": 12
+        },
+        {
+            "disciplinaId": 7,
+            "id": 13,
+            "descripcion": "Desarrollo economico",
+            "descripcionEsp": "Socio economic developmet",
+            "clavesubdisciplina": 13
+        },
+        {
+            "disciplinaId": 7,
+            "id": 14,
+            "descripcion": "Evolucionde las sociedades",
+            "descripcionEsp": "Evolution of societies",
+            "clavesubdisciplina": 14
+        },
+        {
+            "disciplinaId": 8,
+            "id": 15,
+            "descripcion": "Simbolos",
+            "descripcionEsp": "Symbol",
+            "clavesubdisciplina": 15
+        },
+        {
+            "disciplinaId": 8,
+            "id": 16,
+            "descripcion": "Sociolinguistica",
+            "descripcionEsp": "Sociolinguistics",
+            "clavesubdisciplina": 16
+        },
+        {
+            "disciplinaId": 9,
+            "id": 17,
+            "descripcion": "Habitos alimentarios",
+            "descripcionEsp": "Eating habits",
+            "clavesubdisciplina": 17
+        },
+        {
+            "disciplinaId": 9,
+            "id": 18,
+            "descripcion": "Osteologia",
+            "descripcionEsp": "Osteology",
+            "clavesubdisciplina": 18
+        },
+        {
+            "disciplinaId": 10,
+            "id": 19,
+            "descripcion": "Biofarmacia",
+            "descripcionEsp": "Biopharmacy",
+            "clavesubdisciplina": 19
+        },
+        {
+            "disciplinaId": 10,
+            "id": 20,
+            "descripcion": "Bioelectricidad",
+            "descripcionEsp": "Biocoustics",
+            "clavesubdisciplina": 20
+        },
+        {
+            "disciplinaId": 11,
+            "id": 21,
+            "descripcion": "Otros",
+            "descripcionEsp": "Other",
+            "clavesubdisciplina": 21
+        },
+        {
+            "disciplinaId": 12,
+            "id": 22,
+            "descripcion": "Enfermeria en salud publica",
+            "descripcionEsp": "Nursing public health",
+            "clavesubdisciplina": 22
+        },
+        {
+            "disciplinaId": 12,
+            "id": 23,
+            "descripcion": "Enfermeria oncologica",
+            "descripcionEsp": "Cancer Nursing",
+            "clavesubdisciplina": 23
+        },
+        {
+            "disciplinaId": 13,
+            "id": 24,
+            "descripcion": "Peptidos",
+            "descripcionEsp": "Peptides",
+            "clavesubdisciplina": 24
+        },
+        {
+            "disciplinaId": 13,
+            "id": 25,
+            "descripcion": "Procesos metabolicos",
+            "descripcionEsp": "Metabolic processes",
+            "clavesubdisciplina": 25
+        },
+        {
+            "disciplinaId": 14,
+            "id": 26,
+            "descripcion": "Biosintesis",
+            "descripcionEsp": "Biosynthesis",
+            "clavesubdisciplina": 26
+        },
+        {
+            "disciplinaId": 14,
+            "id": 27,
+            "descripcion": "Gas liquido",
+            "descripcionEsp": "Liquefied",
+            "clavesubdisciplina": 27
+        },
+        {
+            "disciplinaId": 15,
+            "id": 28,
+            "descripcion": "No existe subdisciplina",
+            "descripcionEsp": "There is no subdiscipline",
+            "clavesubdisciplina": 28
+        },
+        {
+            "disciplinaId": 16,
+            "id": 29,
+            "descripcion": "Otras",
+            "descripcionEsp": "Other",
+            "clavesubdisciplina": 29
         }
+
     ]
 }

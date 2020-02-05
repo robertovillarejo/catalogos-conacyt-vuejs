@@ -22,7 +22,7 @@ export default class CatalogoComponent extends Vue {
 
   @Prop(String)
   readonly label: string | undefined;
-
+  
   @Prop()
   value: any; // Reading from v-model
 

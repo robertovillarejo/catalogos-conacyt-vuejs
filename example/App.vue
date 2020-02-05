@@ -56,7 +56,7 @@ Vue.use(VueI18n);
 Vue.use(Vuelidate);
 
 Vue.use(CatalogoComponent, {
-  host: "https://my-json-server.typicode.com",
+  host: " http://localhost:3000",
   context: "/robertovillarejo/catalogos-conacyt-vuejs",
   requiredLevel: Level.ESPECIALIDAD
 });
